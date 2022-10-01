@@ -1,0 +1,10 @@
+[13-Feb-2019 06:15:03 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home/kg9y83yvpyxo/alive.codeencrypt.in/admin/chart/booking_registration.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/kg9y83yvpyxo/alive.codeencrypt.in/admin/chart/booking_registration.php on line 10
+[13-Feb-2019 06:15:11 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_assoc() on boolean in /home/kg9y83yvpyxo/alive.codeencrypt.in/admin/chart/booking_registration.php:10
+Stack trace:
+#0 {main}
+  thrown in /home/kg9y83yvpyxo/alive.codeencrypt.in/admin/chart/booking_registration.php on line 10
+[13-Feb-2019 06:16:17 UTC] PHP Notice:  Undefined index: NumUsers in /home/kg9y83yvpyxo/alive.codeencrypt.in/admin/chart/booking_registration.php on line 14
+[13-Feb-2019 06:16:17 UTC] PHP Notice:  Undefined index: NumUsers in /home/kg9y83yvpyxo/alive.codeencrypt.in/admin/chart/booking_registration.php on line 14
