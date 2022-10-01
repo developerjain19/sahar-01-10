@@ -17,11 +17,11 @@ $uploadOk = 1;
 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
   move_uploaded_file($_FILES["graphics"]["tmp_name"], $target_file);
     $name= $_POST['name'];
-  $sal=mysqli_query($conn, "INSERT INTO `company_graphics`(`show_date`, `type`, `graphics`,`name`) VALUES ('".$show_date."', '".$type."'  ,'".$_FILES["graphics"]["name"]."','".$name."')");
+  $sal=mysqli_query($conn, "INSERT INTO `company_graphics`(`graphics`) VALUES ('".$_FILES["graphics"]["name"]."')");
 
       if($sal)
       {
-echo '<script>window.location="graphics.php"</script>';
+echo '<script>window.location="company.php"</script>';
             
 }
 
@@ -107,6 +107,8 @@ include 'include/side_navbar.php';
                                    <option value="">Select type</option>
                                    <option value="1">festival Graphic</option>
                                    <option value="2">Daily Quote</option>
+                                   <option value="3">Motivational Quote</option>
+                                   <option value="4">Business Quote</option>
                                    
                                </select>
                               </div>

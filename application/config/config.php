@@ -2,8 +2,8 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
-// $config['base_url'] = 'https://webangeltech.com/sahardirectory/';
-$config['base_url'] = 'http://localhost/sahar/';
+$config['base_url'] = 'https://webangeltech.com/sahardirectory/';
+// $config['base_url'] = 'http://localhost/sahar/';
 
 
 

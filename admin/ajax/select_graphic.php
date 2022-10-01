@@ -53,9 +53,17 @@ $output .= '     <tr>
                          {
                           $output .= 'Graphic';   
                          }
-                          else
+                          else if($select_product_gallery_row['type'] == 2)
                          {
                           $output .= 'Quote';   
+                         }
+                          else if($select_product_gallery_row['type'] == 3)
+                         {
+                          $output .= 'Motivational';   
+                         }
+                          else 
+                         {
+                          $output .= 'Business';   
                          }
                          
                          

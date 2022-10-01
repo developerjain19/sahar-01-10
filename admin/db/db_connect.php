@@ -9,7 +9,7 @@ date_default_timezone_set("Asia/Kolkata");
 
 define('product_url', 'http://SaharDirectory.com/img/product/');
 define('product_location', '../../img/product/');
-define('website_url', 'http://webangeltech.com/');
+define('website_url', 'https://webangeltech.com/sahardirectory/');
 
 
 

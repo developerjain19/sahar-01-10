@@ -1269,12 +1269,6 @@ Team Sahar Directory
         }
     }
 
-    public function graphics_motivational()
-    {
-        $data['title'] = "Motivational Graphics | SaharDirectory - Get a Personal Visiting Card";
-        $this->load->view('graphics-motivational', $data);
-    }
-
     public function logout()
     {
         $this->session->unset_userdata('login_user_id');

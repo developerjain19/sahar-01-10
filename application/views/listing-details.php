@@ -487,12 +487,13 @@ background-size: cover;">
                             <div class="form-group">
                                 <div class="side-search-item">
                                     <!--<input class="form-control b-0 ps-2" maxlength="160" name="msg" id="enquirytext" placeholder="Enter Message(160 Words)" required>-->
-                                    <textarea class="form-control b-0 ps-2" maxlength="160" name="msg" id="enquirytext" placeholder="Enter Message(160 Words)" required>
-                                    <div id="sthe-count" style="text-align: right;">
+                                    <textarea class="form-control b-0 ps-2" maxlength="160" name="msg" id="enquirytext" placeholder="Enter Message(160 Words)" required style="height: 49px !important; margin-top: 0px;"></textarea>
+                                   
+                                </div>
+                                 <div id="sthe-count" style="text-align: right;">
                                                         <span id="scurrent">0</span>
                                                         <span id="smaximum">/ 160</span>
                                                       </div>
-                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Submit" class="btn btn-md rounded theme-bg text-light ft-medium fs-sm full-width">

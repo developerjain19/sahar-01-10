@@ -254,9 +254,17 @@ updateRowById('company', 'company_id', $website[0]['company_id'], array('website
                             <i class="fas fa-times"></i>
                             <div class="social">
                                 <a href=whatsapp://send?text=<?= $actual_link ?>" data-action="share/whatsapp/share" onClick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" title="Share on whatsapp" class="whatsapp""><i class=" fab fa-whatsapp"></i></a>
-                                <a data-href="<?= $actual_link ?>" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwebangeltech.com%2Fsahardirectory%2Fsahar%2Fbhopal%2Fentertaintment%2Fsagar&amp;src=sdkpreparse" target="_blank"><i class="fab fa-facebook"></i></a>
-                                <a href="https://twitter.com/share?url=<?= $actual_link ?>" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" title="Share on Twitter" class="twitter""><i class=" fab fa-twitter"></i></a>
 
+
+                                <a href="https://www.facebook.com/sharer/sharer.php?u=<?= $actual_link ?>&t=<?= $website[0]['company_name'] ?>" onclick="javascript:window.open(this.href, '',
+    'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=300,width=600');return false;" target="_blank" title="Share on Facebook"><i class="fab fa-facebook"></i>
+                                </a>
+
+
+                                <a href="https://twitter.com/intent/tweet?text=<?= $actual_link ?>" target="_blank" >
+                                    <i class=" fab fa-twitter"></i>
+
+                                </a>
                             </div>
                         </div>
                     </label>
@@ -633,7 +641,7 @@ updateRowById('company', 'company_id', $website[0]['company_id'], array('website
                 <?php
 
                 foreach ($quote as $daily) {
-                    
+
                     $date = $daily['show_date'];
                     $ldate = date('Y-m-d', strtotime($date));
 
@@ -684,9 +692,9 @@ updateRowById('company', 'company_id', $website[0]['company_id'], array('website
                 <label for="name">Inquiry Message</label><br>
                 <textarea name="msg" rows="5" id="enquirytext" placeholder="Enter Message (160 Words)" maxlength="160" required></textarea>
                 <div id="sthe-count" style="text-align: right;">
-                                                        <span id="scurrent">0</span>
-                                                        <span id="smaximum">/ 160</span>
-                                                      </div>
+                    <span id="scurrent">0</span>
+                    <span id="smaximum">/ 160</span>
+                </div>
                 <input type="submit" value="Submit">
             </form>
         </div>
@@ -725,8 +733,8 @@ updateRowById('company', 'company_id', $website[0]['company_id'], array('website
                 <input type="email" name="email" placeholder="Your Email" required><br>
                 <textarea name="review" id="" maxlength="160" rows="5" placeholder="Enter Your Feedback" required></textarea>
                 <div id="the-count" style="text-align: right;">
-                   <span id="current">0</span>
-                   <span id="maximum">/ 160</span>
+                    <span id="current">0</span>
+                    <span id="maximum">/ 160</span>
                 </div>
                 <input type="submit" value="Submit Your Review">
             </form>
@@ -798,84 +806,83 @@ updateRowById('company', 'company_id', $website[0]['company_id'], array('website
 
 
     <script>
-    
-    $('#enquirytext').keyup(function() {
-    
-  var scharacterCount = $(this).val().length,
-      scurrent = $('#scurrent'),
-      smaximum = $('#smaximum'),
-      stheCount = $('#sthe-count');
-    
-  scurrent.text(scharacterCount);
- 
-  
-  /*This isn't entirely necessary, just playin around*/
-  if (scharacterCount < 70) {
-    scurrent.css('color', '#666');
-  }
-  if (scharacterCount > 70 && scharacterCount < 90) {
-    scurrent.css('color', '#6d5555');
-  }
-  if (scharacterCount > 90 && scharacterCount < 100) {
-    scurrent.css('color', '#793535');
-  }
-  if (scharacterCount > 100 && scharacterCount < 120) {
-    scurrent.css('color', '#841c1c');
-  }
-  if (scharacterCount > 120 && scharacterCount < 139) {
-    scurrent.css('color', '#8f0001');
-  }
-  
-  if (scharacterCount >= 140) {
-    smaximum.css('color', '#8f0001');
-    scurrent.css('color', '#8f0001');
-    stheCount.css('font-weight','bold');
-  } else {
-    smaximum.css('color','#666');
-    stheCount.css('font-weight','normal');
-  }
-  
-      
-});
-   
-    $('textarea').keyup(function() {
-    
-  var characterCount = $(this).val().length,
-      current = $('#current'),
-      maximum = $('#maximum'),
-      theCount = $('#the-count');
-    
-  current.text(characterCount);
- 
-  
-  /*This isn't entirely necessary, just playin around*/
-  if (characterCount < 70) {
-    current.css('color', '#666');
-  }
-  if (characterCount > 70 && characterCount < 90) {
-    current.css('color', '#6d5555');
-  }
-  if (characterCount > 90 && characterCount < 100) {
-    current.css('color', '#793535');
-  }
-  if (characterCount > 100 && characterCount < 120) {
-    current.css('color', '#841c1c');
-  }
-  if (characterCount > 120 && characterCount < 139) {
-    current.css('color', '#8f0001');
-  }
-  
-  if (characterCount >= 140) {
-    maximum.css('color', '#8f0001');
-    current.css('color', '#8f0001');
-    theCount.css('font-weight','bold');
-  } else {
-    maximum.css('color','#666');
-    theCount.css('font-weight','normal');
-  }
-  
-      
-});
+        $('#enquirytext').keyup(function() {
+
+            var scharacterCount = $(this).val().length,
+                scurrent = $('#scurrent'),
+                smaximum = $('#smaximum'),
+                stheCount = $('#sthe-count');
+
+            scurrent.text(scharacterCount);
+
+
+            /*This isn't entirely necessary, just playin around*/
+            if (scharacterCount < 70) {
+                scurrent.css('color', '#666');
+            }
+            if (scharacterCount > 70 && scharacterCount < 90) {
+                scurrent.css('color', '#6d5555');
+            }
+            if (scharacterCount > 90 && scharacterCount < 100) {
+                scurrent.css('color', '#793535');
+            }
+            if (scharacterCount > 100 && scharacterCount < 120) {
+                scurrent.css('color', '#841c1c');
+            }
+            if (scharacterCount > 120 && scharacterCount < 139) {
+                scurrent.css('color', '#8f0001');
+            }
+
+            if (scharacterCount >= 140) {
+                smaximum.css('color', '#8f0001');
+                scurrent.css('color', '#8f0001');
+                stheCount.css('font-weight', 'bold');
+            } else {
+                smaximum.css('color', '#666');
+                stheCount.css('font-weight', 'normal');
+            }
+
+
+        });
+
+        $('textarea').keyup(function() {
+
+            var characterCount = $(this).val().length,
+                current = $('#current'),
+                maximum = $('#maximum'),
+                theCount = $('#the-count');
+
+            current.text(characterCount);
+
+
+            /*This isn't entirely necessary, just playin around*/
+            if (characterCount < 70) {
+                current.css('color', '#666');
+            }
+            if (characterCount > 70 && characterCount < 90) {
+                current.css('color', '#6d5555');
+            }
+            if (characterCount > 90 && characterCount < 100) {
+                current.css('color', '#793535');
+            }
+            if (characterCount > 100 && characterCount < 120) {
+                current.css('color', '#841c1c');
+            }
+            if (characterCount > 120 && characterCount < 139) {
+                current.css('color', '#8f0001');
+            }
+
+            if (characterCount >= 140) {
+                maximum.css('color', '#8f0001');
+                current.css('color', '#8f0001');
+                theCount.css('font-weight', 'bold');
+            } else {
+                maximum.css('color', '#666');
+                theCount.css('font-weight', 'normal');
+            }
+
+
+        });
         $(document).ready(function() {
             // TABS
             $('ul.tabs').tabs();
@@ -884,7 +891,7 @@ updateRowById('company', 'company_id', $website[0]['company_id'], array('website
 
             var bla = $('#phonenum').val();
             // console.log(bla);
-            $("#whatsappshare").attr("href", "https://wa.me/" + 91 + bla + "?text=Hello, my name is <?= $website[0]['company_person']  ?> and I have listed my business. You can contact me on my business profile -  <?= $actual_link ?>This business profile is powered by Sahar Directory.Click to register your business - <?= base_url() ?> ");
+            $("#whatsappshare").attr("href", "https://wa.me/" + 91 + bla + "?text=Hello, my name is <?= $website[0]['company_person']  ?> and I have listed my business. You can contact me on my business profile -  <?= $actual_link ?>This business profile is powered by Sahar Directory.Click to register your business - <?= base_url() ?>");
         });
     </script>
 

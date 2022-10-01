@@ -117,9 +117,7 @@ $cityfetch = getRowById('tbl_cities', 'id', $getcard[0]['company_city']);
                                                     <label class="mb-1">Your Vcard/website URL ( Note : Only Use (A-Z),(a-z),(0-9),(_) ) <i><span style="color:red;font-size:12px;" id="web_company_name_msg"></span><span style="color:green;font-size:12px;" id="web_company_name_msgs"></span></i></label>
                                                     <input type="text" class="form-control rounded" placeholder="Ex: yourcompany-name" name="company_web_title" id="web_company_name" value="<?= (($getcard != '') ? $getcard['0']['company_web_title'] : '') ?>" <?= (($getcard['0']['company_web_title'] != '') ? 'readonly' : '') ?> autocomplete="off" />
 
-
-
-                                                    <?= (($getcard['0']['company_web_title'] != '') ? '<p class=""> If you want to change your Vcard Url Please Chat with us on <a target="_blank" href="https://api.whatsapp.com/send?phone=+917419272427&text=Hi, I Want to Change my vcard url" class="commonbutton text-success"><i class="lni lni-whatsapp"></i> Whastapp</a></p>' : '') ?>
+                                                     <?= (($getcard['0']['company_web_title'] != '') ? '<p class=""> If you want to change your Vcard Url Please Chat with us on <a target="_blank" href="https://api.whatsapp.com/send?phone=+917419272427&text=Hi, I Want to Change my vcard url" class="commonbutton text-success"><i class="lni lni-whatsapp"></i> Whastapp</a></p>' : '') ?>
                                                     <?php
                                                     if($getcard['0']['company_web_title'] == ''){
                                                     ?>
@@ -127,7 +125,7 @@ $cityfetch = getRowById('tbl_cities', 'id', $getcard[0]['company_city']);
                                                     <?php
                                                     }else{
                                                     ?>
-<a id="active_link"><span class="text-danger">Your website URL:</span> <?= base_url() ?>sahar/<?= url_title($cityfetch['0']['name']) ?>/<?= url_title(strtolower($cate[0]['category'])); ?>/<?= $getcard['0']['company_web_title'] ?><span id="url_pre"></span></a>
+                                                     <a id="active_link"><span class="text-danger">Your website URL:</span> <?= base_url() ?>sahar/<?= url_title($cityfetch['0']['name']) ?>/<?= url_title(strtolower($cate[0]['category'])); ?>/<?= $getcard['0']['company_web_title'] ?><span id="url_pre"></span></a>
                                                         <?php
                                                     }
                                                     ?>
@@ -210,7 +208,7 @@ $cityfetch = getRowById('tbl_cities', 'id', $getcard[0]['company_city']);
             $('#web_company_name_msg').text('Company web name is required');
         } else {
             var str = $('#web_company_name').val();
-            str = str.replace(/\W$/, '-');
+            str = str.replace(/[^\w\s_]/gi, '-');
             $('#web_company_name').val(str);
 
             $('#web_company_name').text('');

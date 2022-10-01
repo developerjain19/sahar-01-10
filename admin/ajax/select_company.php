@@ -57,8 +57,14 @@ while ($select_company_row = $select_company->fetch_assoc()) {
   $inquiry = $select_inquiry->fetch_array();
   $select_feedback = $conn->query("SELECT count(company_id) as coun FROM `feedback` WHERE `company_id`= '" . $select_company_row['company_id'] . "' ");
   $feedback = $select_feedback->fetch_array();
+ 
   $select_category = $conn->query("SELECT * FROM `company_category` WHERE `cate_id`= '" . $select_company_row['company_category'] . "' ");
   $category = $select_category->fetch_array();
+  
+    $select_city = $conn->query("SELECT * FROM `tbl_cities` WHERE `id`= '" . $select_company_row['company_city'] ."' ");
+  $city = $select_city->fetch_array();
+  
+  
   $select_password = $conn->query("SELECT * FROM `tbl_registration` WHERE `rgid`= '" . $select_company_row['rgid'] . "' ");
   $password = $select_password->fetch_array();
    
@@ -88,21 +94,25 @@ while ($select_company_row = $select_company->fetch_assoc()) {
 
 
                                 
-                                <td><a target="_blank" href="' . website_url . 'sahar/' .clean(strtolower(trim($select_company_row["company_city"]))).'/' .clean(strtolower(trim($category["category"]))).'/'. $select_company_row['company_web_title'] . '">
+                                <td>
                               
                                 
                             ' .     (($select_company_row["company_type"] == 0)? $select_company_row["company_name"] :  $select_company_row["company_person"])   .'
                                 
-                               </a>
-                                
-                                
-                                
-                                <br>
+                                 <br>';
                                
-                                <a target="_blank" href="' . website_url . 'sahar/' .clean(strtolower(trim($select_company_row["company_city"]))).'/' .clean(strtolower(trim($category["category"]))).'/'. $select_company_row['company_web_title'] . '">
+                             
+                             if($select_company_row['company_web_title'] != '') 
+                             
+                             {
+                               $output .= '   <a target="_blank" class="btn btn-primary" href="' . website_url . 'sahar/' .clean(strtolower(trim($city["name"]))).'/' .clean(strtolower(trim($category["category"]))).'/'. $select_company_row['company_web_title'] . '">
                                 
                                 
-                                City URL  ' .     (($select_company_row["company_type"] == 0)? $select_company_row["company_name"] :  $select_company_row["company_person"])   .'</a><br>
+                                Vcard url  ' .     (($select_company_row["company_type"] == 0)? $select_company_row["company_name"] :  $select_company_row["company_person"])   .'
+                                </a> ';
+                             }
+                                
+                         $output .= '         <br>
                                 
                                 
                                 
@@ -125,7 +135,11 @@ while ($select_company_row = $select_company->fetch_assoc()) {
 
   $output .= '  <td>' . $select_company_row["created_date"] . '</td>
                                 
-                                <td><a href="ajax/company-del.php?id=' . $select_company_row["rgid"] . '" class="btn btn-primary">Delete</td>
+                                <td>
+                                
+                                <a href="logo-edit.php?id=' . $select_company_row["company_id"] . '" class="btn btn-danger">Edit Logo</a>
+                                 <br>
+                                 <a href="ajax/company-del.php?id=' . $select_company_row["rgid"] . '" class="btn btn-primary">Delete</td>
                                
                             </tr>';
   $sno++;

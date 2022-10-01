@@ -4808,7 +4808,8 @@ ul.doc.ratting-view li i.filled {
 {
 	
   
-   width: 150px !important;
+    width: 150px !important;
+    height: 200px !important;
     display: block !important;
     margin: auto !important;
 }
@@ -9331,7 +9332,7 @@ footer.skin-dark-footer ul.footer-bottom-social li a:focus {
 	.goodup-dashboard-wrap {
 		min-height: 0;
 		display: block;
-		padding: .5rem !important;
+		padding: 2rem !important;
 	}
 
 	a.mobNavigation {

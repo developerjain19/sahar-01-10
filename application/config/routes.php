@@ -52,7 +52,6 @@ $route['checkotp'] = 'Home/checkotp';
 $route['listing/(:any)/(:any)/(:any)/(:any)'] = 'Home/listing_details/$1/$2/$3/$4';
 $route['forget-password'] = 'Home/forget_password';
 $route['track'] = 'Home/track';
-$route['graphics-motivational'] = 'Home/graphics_motivational';
 
 
 

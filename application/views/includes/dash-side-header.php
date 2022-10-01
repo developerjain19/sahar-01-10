@@ -54,7 +54,7 @@
                 </div>
                 <ul data-submenu-title="Banners" class="banner">
                     <li><a href=""><i class="lni lni-files me-2"></i>Festive</a></li>
-                    <li><a href="<?= base_url('graphics-motivational') ?>"><i class="lni lni-files me-2"></i>Motivational</a></li>
+                    <li><a href=""><i class="lni lni-files me-2"></i>Motivational</a></li>
                     <li><a href=""><i class="lni lni-files me-2"></i>Business</a></li>
                 </ul>
                 <div class="nav-head d-flex justify-content-between align-items-center border-top "><span>My Account</span>
