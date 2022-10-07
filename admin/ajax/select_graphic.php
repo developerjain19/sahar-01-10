@@ -45,32 +45,26 @@ $output .= '
 $select_product = $conn->query("SELECT * FROM `company_graphics` ");
 while ($select_product_gallery_row = $select_product->fetch_assoc()) {
 
-$output .= '     <tr>
+  $output .= '     <tr>
                          <td> ' . $sno . ' </td>   <td>';
-                         
-                        
-                         if($select_product_gallery_row['type'] == 1)
-                         {
-                          $output .= 'Graphic';   
-                         }
-                          else if($select_product_gallery_row['type'] == 2)
-                         {
-                          $output .= 'Quote';   
-                         }
-                          else if($select_product_gallery_row['type'] == 3)
-                         {
-                          $output .= 'Motivational';   
-                         }
-                          else 
-                         {
-                          $output .= 'Business';   
-                         }
-                         
-                         
-                         
-   $output .= '          </td>            <td> ' . $select_product_gallery_row['name'] . ' </td>
+
+
+  if ($select_product_gallery_row['type'] == 1) {
+    $output .= 'Graphic';
+  } else if ($select_product_gallery_row['type'] == 2) {
+    $output .= 'Quote';
+  } else if ($select_product_gallery_row['type'] == 3) {
+    $output .= 'Motivational';
+  } else {
+    $output .= 'Business';
+  }
+
+
+
+  $output .= '          </td>            
+   <td> ' . $select_product_gallery_row['name'] . ' </td>
                           <td><img src="graphicsuploads/' . $select_product_gallery_row["graphics"] . '" width="100" height="70" alt="Gallery" /> </td>
-                        <td><button onclick="edit_graphic(' . $select_product_gallery_row["id"] . ',' . (($select_product_gallery_row["status"] == '1')? '0':'1') . ')" >' . (($select_product_gallery_row["status"] == '1')? 'Active':'Inactive') . '</button></td>
+                        <td><button onclick="edit_graphic(' . $select_product_gallery_row["id"] . ',' . (($select_product_gallery_row["status"] == '1') ? '0' : '1') . ')" >' . (($select_product_gallery_row["status"] == '1') ? 'Active' : 'Inactive') . '</button></td>
                         <td>
                           ' . $select_product_gallery_row["date"] . '
                         </td>
@@ -80,7 +74,7 @@ $output .= '     <tr>
                         </td>
                     </tr>
            ';
-$sno++;
+  $sno++;
 }
 $output .= '
   </tbody>
@@ -89,5 +83,3 @@ $output .= '
   ';
 
 echo $output;
-?>
- 

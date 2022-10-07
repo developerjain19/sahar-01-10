@@ -121,11 +121,11 @@ $cityfetch = getRowById('tbl_cities', 'id', $getcard[0]['company_city']);
                                                     <?php
                                                     if($getcard['0']['company_web_title'] == ''){
                                                     ?>
-                                                    <a id="active_link"><span class="text-danger">Your website URL:</span> <?= base_url() ?>sahar/<?= url_title($cityfetch['0']['name']) ?>/<?= url_title(strtolower($cate[0]['category'])); ?>/<span id="url_pre"></span></a>
+                                                    <a id="active_link" style="word-break: break-all;"><span class="text-danger">Your website URL:</span> <?= base_url() ?>sahar/<?= url_title($cityfetch['0']['name']) ?>/<?= url_title(strtolower($cate[0]['category'])); ?>/<span id="url_pre"></span></a>
                                                     <?php
                                                     }else{
                                                     ?>
-                                                     <a id="active_link"><span class="text-danger">Your website URL:</span> <?= base_url() ?>sahar/<?= url_title($cityfetch['0']['name']) ?>/<?= url_title(strtolower($cate[0]['category'])); ?>/<?= $getcard['0']['company_web_title'] ?><span id="url_pre"></span></a>
+                                                     <a id="active_link" style="word-break: break-all;"><span class="text-danger">Your website URL:</span> <?= base_url() ?>sahar/<?= url_title($cityfetch['0']['name']) ?>/<?= url_title(strtolower($cate[0]['category'])); ?>/<?= $getcard['0']['company_web_title'] ?><span id="url_pre"></span></a>
                                                         <?php
                                                     }
                                                     ?>

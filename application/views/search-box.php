@@ -31,6 +31,17 @@
                             <?php }
                             ?>
 
+                            <?php
+
+                         if ($search_product  != '') {
+                            foreach ($search_product as $sproduct) {
+                            ?>
+                            <option value="<?= trim(strtolower($sproduct['product_title'])) ?>">
+
+                            <?php }
+                         }
+                            ?>
+
 
                     </datalist>
                 </div>

@@ -44,64 +44,63 @@
     <section class="space min gray">
         <div class="container">
 
-        
+
             <div class="row">
-                <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12">
-                    <div class="bg-white rounded mb-4 fliter-box">
+                <div class="col-xl-3 col-lg-4 col-md-12 col-sm-12 filter_div">
+                    <div class="bg-white rounded mb-4 under_filter">
+                        <div class="bg-white rounded mb-4 fliter-box">
 
-                        <div class="sidebar_header d-flex align-items-center justify-content-between px-4 py-3 br-bottom">
-                            <h4 class="ft-medium fs-lg mb-0">Filter</h4>
-                            <div class="ssh-header">
-                                <a href="javascript:void(0);" class="clear_all ft-medium text-muted">Clear All</a>
-                                <a href="#search_open" data-bs-toggle="collapse" aria-expanded="false" role="button" class="collapsed _filter-ico ml-2"><i class="lni lni-text-align-right"></i></a>
+                            <div class="sidebar_header d-flex align-items-center justify-content-between px-4 py-3 br-bottom">
+                                <h4 class="ft-medium fs-lg mb-0">Filter</h4>
+                                <div class="ssh-header">
+                                    <a href="javascript:void(0);" class="clear_all ft-medium text-muted">Clear All</a>
+                                    <a href="#search_open" data-bs-toggle="collapse" aria-expanded="false" role="button" class="collapsed _filter-ico ml-2"><i class="lni lni-text-align-right"></i></a>
+                                </div>
                             </div>
-                        </div>
 
-                        <!-- Find New Property -->
-                        <div class="sidebar-widgets collapse miz_show" id="search_open" data-bs-parent="#search_open">
-                            <div class="search-inner">
+                            <!-- Find New Property -->
+                            <div class="sidebar-widgets collapse miz_show" id="search_open" data-bs-parent="#search_open">
+                                <div class="search-inner">
 
-                                <div class="side-filter-box">
-                                    <div class="side-filter-box-body">
+                                    <div class="side-filter-box">
+                                        <div class="side-filter-box-body">
+                                            <div class="inner_widget_link">
+                                                <h6 class="ft-medium">categories</h6>
+                                                <form action="" method="GET">
+                                                    <ul class="no-ul-list filter-list category-list">
+                                                        <?php
+                                                        $i = 0;
+                                                        if ($category != '') {
+                                                            foreach ($category as $cate) {
+                                                                $i = $i + 1;
+                                                        ?>
 
+                                                                <li>
+                                                                    <input id="<?= $i ?>" value="<?php echo $cate['cate_id']; ?>" class="common_selector checkbox-custom category" type="checkbox" <?= (($cate['cate_id'] == $cateid) ? 'Checked' : '')  ?>>
+                                                                    <label for="<?= $i ?>" class="checkbox-custom-label"><?php echo $cate['category']; ?></label>
 
-                                        <div class="inner_widget_link">
-                                            <h6 class="ft-medium">categories</h6>
-                                            <form action="" method="GET">
-                                                <ul class="no-ul-list filter-list category-list">
-                                                    <?php
-                                                    $i = 0;
-                                                    if ($category != '') {
-                                                        foreach ($category as $cate) {
-                                                            $i = $i + 1;
-                                                    ?>
+                                                                    <?php
+                                                                    $num = getNumRows('company_subcategory', array('category_id' => $cate['cate_id']));
 
-                                                            <li>
-                                                                <input id="<?= $i ?>" value="<?php echo $cate['cate_id']; ?>" class="common_selector checkbox-custom category" type="checkbox" <?= (($cate['cate_id'] == $cateid) ? 'Checked' : '')  ?>>
-                                                                <label for="<?= $i ?>" class="checkbox-custom-label"><?php echo $cate['category']; ?></label>
+                                                                    echo '<label class="text-muted">' . $num . '</label>';
+                                                                    ?>
 
-                                                                <?php
-                                                                $num = getNumRows('company_subcategory', array('category_id' => $cate['cate_id']));
+                                                                </li>
 
-                                                                echo '<label class="text-muted">' . $num . '</label>';
-                                                                ?>
-
-                                                            </li>
-
-                                                    <?php
+                                                        <?php
+                                                            }
                                                         }
-                                                    }
-                                                    ?>
+                                                        ?>
 
-                                                </ul>
+                                                    </ul>
+                                            </div>
+                                            <div class="form-group filter_button">
+                                                <button type="submit" class="btn theme-bg text-light rounded full-width">Show</button>
+                                            </div>
+                                            </form>
                                         </div>
-                                        <div class="form-group filter_button">
-                                            <button type="submit" class="btn theme-bg text-light rounded full-width">Show</button>
-                                        </div>
-                                        </form>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -143,7 +142,7 @@
 
 
             var category = get_filter('category');
-            
+
             console.log(category);
 
             $.ajax({
@@ -153,7 +152,7 @@
                     category: category
                 },
                 beforeSend: function() {
-                    $("#sideban").text("").html("Loading.. <i class='fa fa-spin fa-spinner'></i>").attr('disabled', true);
+                    $("#filter_data").text("").html("Loading.. <i class='fa fa-spin fa-spinner'></i>").attr('disabled', true);
                 },
                 success: function(data) {
                     // console.log(data);

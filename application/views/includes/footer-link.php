@@ -4,7 +4,7 @@
 	<script src="<?= base_url() ?>assets/js/bootstrap.min.js"></script>
 	<script src="<?= base_url() ?>assets/js/slick.js"></script>
 	<script src="<?= base_url() ?>assets/js/jquery.magnific-popup.min.js"></script>
-	<script src="<?= base_url() ?>../assets/js/dropzone.js"></script>
+	<script src="<?= base_url() ?>assets/js/dropzone.js"></script>
 	<script src="<?= base_url() ?>assets/js/counterup.js"></script>
 	<script src="<?= base_url() ?>assets/js/lightbox.js"></script>
 	<script src="<?= base_url() ?>assets/js/moment.min.js"></script>
@@ -12,6 +12,7 @@
 	<script src="<?= base_url() ?>assets/js/lightbox.js"></script>
 	<script src="<?= base_url() ?>assets/js/jQuery.style.switcher.js"></script>
 	<script src="<?= base_url() ?>assets/js/custom.js"></script>
+	<script type="text/javascript" src="<?= base_url() ?>assets/js/jquery.min.js"></script>
 
 
 	<!-- Morris.js charts -->

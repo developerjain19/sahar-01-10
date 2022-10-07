@@ -29,7 +29,7 @@
                                     <br>
                                 </span>
                                 <span class="ec-login-wrap ec-login-btn text-center">
-                                    <button class="btn btn-md full-width bg-sky text-light rounded ft-medium" type="button"  id="submitotp">Submit OTP</button>
+                                    <button class="btn btndis btn-md full-width bg-sky text-light rounded ft-medium" type="button" id="submitotp">Submit OTP</button>
                                     <br />
                                     <hr><br />
                                     <button type="button" id="resend" class="resendbtn btn btn-md full-width bg-sky text-light rounded ft-medium" data-contact="<?= $this->session->userdata['login_user_contact'] ?>">Resend OTP</button>
@@ -72,15 +72,18 @@
 
     $('#submitotp').click(function() {
         var vid = $('#otpval').val();
-       console.log(vid);
+        console.log(vid);
         $.ajax({
             method: "POST",
             url: "<?= base_url('checkotp') ?>",
             data: {
                 vid: vid
             },
+            beforeSend: function() {
+                $(".btndis").text("").html("Loading.. <i class='fa fa-spin fa-spinner'></i>").attr('disabled', true);
+            },
             success: function(response) {
-                  console.log(response);
+                console.log(response);
                 if (response == '1') {
                     window.location = "<?= base_url('my-profile') ?>";
                 } else {

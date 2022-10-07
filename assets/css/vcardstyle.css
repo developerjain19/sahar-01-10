@@ -19,6 +19,10 @@ body {
 	background: #ffffff;
 	margin: 30px;
 	margin-top: 100px;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1920' height='1000' preserveAspectRatio='none' viewBox='0 0 1920 1000'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1031%26quot%3b)' fill='none'%3e%3crect width='1920' height='1000' x='0' y='0' fill='url(%23SvgjsLinearGradient1032)'%3e%3c/rect%3e%3cpath d='M110 1000L1110 0L1404 0L404 1000z' fill='url(%23SvgjsLinearGradient1033)'%3e%3c/path%3e%3cpath d='M729.6 1000L1729.6 0L2311.6 0L1311.6 1000z' fill='url(%23SvgjsLinearGradient1033)'%3e%3c/path%3e%3cpath d='M1884 1000L884 0L534.5 0L1534.5 1000z' fill='url(%23SvgjsLinearGradient1034)'%3e%3c/path%3e%3cpath d='M1224.4 1000L224.4000000000001 0L-261.5999999999999 0L738.4000000000001 1000z' fill='url(%23SvgjsLinearGradient1034)'%3e%3c/path%3e%3cpath d='M1024.6846056899049 1000L1920 104.68460568990474L1920 1000z' fill='url(%23SvgjsLinearGradient1033)'%3e%3c/path%3e%3cpath d='M0 1000L895.3153943100953 1000L 0 104.68460568990474z' fill='url(%23SvgjsLinearGradient1034)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1031'%3e%3crect width='1920' height='1000' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='11.98%25' y1='-23%25' x2='88.02%25' y2='123%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1032'%3e%3cstop stop-color='%230e2a47' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(0%2c 37%2c 150%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='0%25' y1='100%25' x2='100%25' y2='0%25' id='SvgjsLinearGradient1033'%3e%3cstop stop-color='rgba(162%2c 0%2c 62%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(162%2c 0%2c 62%2c 1)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3clinearGradient x1='100%25' y1='100%25' x2='0%25' y2='0%25' id='SvgjsLinearGradient1034'%3e%3cstop stop-color='rgba(162%2c 0%2c 62%2c 1)' offset='0'%3e%3c/stop%3e%3cstop stop-opacity='0' stop-color='rgba(162%2c 0%2c 62%2c 1)' offset='0.66'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 
 html {
@@ -875,7 +879,7 @@ html {
 	margin-bottom: 2px;
 }
 .vcard-style-5 .address p {
-	font-size: 11px;
+	font-size: 12px;
 }
 .vcard-style-5 .footer-links {
 	position: absolute;
@@ -1549,11 +1553,12 @@ html {
 	border-radius: 10px;
 	height: 85px;
 	object-fit: contain;
+ 	margin-top: -50px;
 }
 
 .vcard-style-10 .person {
 	position: relative;
-	top: -8%;
+	top: 7%;
 }
 
 .vcard-style-10 .person i {
@@ -1839,6 +1844,15 @@ hr {
 	/*.vcard-style-1 {*/
 	/*	height: 25%;*/
 	/*}*/
+}
+
+@media (min-height: 800px){
+  body{
+	height: 76vh;
+  }
+  .vcard-wrapper{
+    margin-top: 31px;
+  }
 }
 .inquryform {
 	width: 100%;

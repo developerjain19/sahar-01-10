@@ -17,7 +17,7 @@ background-size: cover;">
         <?php
         if ($row[0]['vacrd_style'] != '') {
         ?>
-            <div class="abs-list-sec right_pos"><a href="<?= base_url() ?>sahar/<?= url_title($city[0]['name'] ) ?>/<?= url_title(strtolower($cate[0]['category'])); ?>/<?= $row[0]['company_web_title'] ?>" class="add-list-btn" target="_blank"><i class="fas fa-id-card me-2"></i>Company Website</a></div>
+            <div class="abs-list-sec right_pos"><a href="<?= base_url() ?>sahar/<?= url_title($city[0]['name']) ?>/<?= url_title(strtolower($cate[0]['category'])); ?>/<?= $row[0]['company_web_title'] ?>" class="add-list-btn" target="_blank"><i class="fas fa-id-card me-2"></i>Company Website</a></div>
         <?php
         }
         ?>
@@ -77,22 +77,16 @@ background-size: cover;">
                                 ?>
                             </div>
                             <div class="social_icon">
-                                
-                                <a href="<?= (($row[0]['company_facebook'] != '') ? $row[0]['company_facebook'] : $social[0]['fb'] ) ?>"
-                                    target="_blank"><i class="lni lni-facebook-filled"></i></a>
-                                <a href="<?= (($row[0]['company_instagram'] != '') ? $row[0]['company_instagram'] : $social[0]['insta'])  ?>"
-                                    target="_blank"><i class="lni lni-instagram"></i></a>
-                                <a href="<?= (($row[0]['company_twitter'] != '') ? $row[0]['company_twitter'] : $social[0]['twitter'])  ?>"
-                                    target="_blank"><i class="lni lni-twitter-filled"></i></a>
-                                <a href="<?= (($row[0]['company_linkedin'] != '') ? $row[0]['company_linkedin'] : $social[0]['linkedin'])  ?>"
-                                    target="_blank"><i class="lni lni-linkedin"></i></a>
-                                <a href="<?= (($row[0]['company_youtube'] != '') ? $row[0]['company_youtube'] : $social[0]['youtube'])  ?>"
-                                    target="_blank"><i class="lni lni-youtube"></i></a>
-                                <a href="<?= (($row[0]['company_telegram'] != '') ? $row[0]['company_telegram'] : $social[0]['telegram'])  ?>"
-                                    target="_blank"><i class="lni lni-telegram"></i></a>
-                                
-                                
-                                
+
+                                <a href="<?= (($row[0]['company_facebook'] != '') ? $row[0]['company_facebook'] : $social[0]['fb']) ?>" target="_blank"><i class="lni lni-facebook-filled"></i></a>
+                                <a href="<?= (($row[0]['company_instagram'] != '') ? $row[0]['company_instagram'] : $social[0]['insta'])  ?>" target="_blank"><i class="lni lni-instagram"></i></a>
+                                <a href="<?= (($row[0]['company_twitter'] != '') ? $row[0]['company_twitter'] : $social[0]['twitter'])  ?>" target="_blank"><i class="lni lni-twitter-filled"></i></a>
+                                <a href="<?= (($row[0]['company_linkedin'] != '') ? $row[0]['company_linkedin'] : $social[0]['linkedin'])  ?>" target="_blank"><i class="lni lni-linkedin"></i></a>
+                                <a href="<?= (($row[0]['company_youtube'] != '') ? $row[0]['company_youtube'] : $social[0]['youtube'])  ?>" target="_blank"><i class="lni lni-youtube"></i></a>
+                                <a href="<?= (($row[0]['company_telegram'] != '') ? $row[0]['company_telegram'] : $social[0]['telegram'])  ?>" target="_blank"><i class="lni lni-telegram"></i></a>
+
+
+
                             </div>
                         </div>
 
@@ -267,21 +261,15 @@ background-size: cover;">
                                         <div class="col-xl-12 col-lg-12 col-md-12">
                                             <div class="list-map-lot">
                                                 <!--<iframe width="100%" height="250" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" -->
-                                                <!--src="https://maps.google.it/maps?q=<?php echo $row[0]['company_address'] . ' ' .$row[0]['pin_code'] .  ' ' . $city[0]['name'] . ' ' . $state[0]['state_name'] ?>&output=embed"></iframe>-->
-                                           
-                                           
-                                           <iframe
-                                           width="100%" height="250"
-                                              style="border:0"
-                                              loading="lazy"
-                                              allowfullscreen
-                                              referrerpolicy="no-referrer-when-downgrade"
-                                              src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPkme9OgttArZPoPiib-_7uk8U6IegnAs
-                                                &q=<?php echo $row[0]['company_address'] . ' ' .$row[0]['pin_code'] .  ' ' . $city[0]['name'] . ' ' . $state[0]['state_name'] ?>">
-                                            </iframe>
-                                           
-                                           
-                                           
+                                                <!--src="https://maps.google.it/maps?q=<?php echo $row[0]['company_address'] . ' ' . $row[0]['pin_code'] .  ' ' . $city[0]['name'] . ' ' . $state[0]['state_name'] ?>&output=embed"></iframe>-->
+
+
+                                                <iframe width="100%" height="250" style="border:0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCPkme9OgttArZPoPiib-_7uk8U6IegnAs
+                                                &q=<?php echo $row[0]['company_address'] . ' ' . $row[0]['pin_code'] .  ' ' . $city[0]['name'] . ' ' . $state[0]['state_name'] ?>">
+                                                </iframe>
+
+
+
                                             </div>
 
                                         </div>
@@ -315,7 +303,7 @@ background-size: cover;">
 
 
 
-                                                    <h4><a href="#"><?= $rev['name'] ?></a><span class="reviews-comments-item-date"><i class="ti-calendar theme-cl me-1"></i><?= convertDatedmy($rev['create_date']); ?></span></h4>
+                                                    <h4 class="mob_view_review"><a href="#"><?= $rev['name'] ?></a><span class="reviews-comments-item-date"><i class="ti-calendar theme-cl me-1"></i><?= convertDatedmy($rev['create_date']); ?></span></h4>
 
                                                     <div class="listing-rating high">
                                                         <?php
@@ -376,9 +364,9 @@ background-size: cover;">
                         <div class="jbd-01 px-4 py-4">
                             <div class="jbd-details mb-4">
                                 <h5 class="ft-bold fs-lg">Drop Your Review</h5>
-                                <p class="text-danger">Please fill all the details </p>
+                                <!-- <p class="text-danger">Please fill all the details </p> -->
                                 <div class="review-form-box form-submit mt-3">
-                                    <form action="<?= base_url('Home/review_submit') ?>" method="POST">
+                                    <form name="formsubmit" action="<?= base_url('Home/review_submit') ?>" method="POST">
                                         <?php
                                         if ($this->session->has_userdata('rmsg')) {
                                             echo $this->session->userdata('rmsg');
@@ -389,10 +377,10 @@ background-size: cover;">
                                         <div class="row">
 
                                             <div class="col-lg-12 col-md-12 col-sm-12">
-                                                <label class="ft-medium small mb-1">Rating*</label>
+                                                <label class="ft-medium small mb-1">Rate Us *</label>
                                                 <div class="feedback">
                                                     <div class="rating">
-                                                        <input type="radio" name="rating" id="rating-5" value="5" required>
+                                                        <input type="radio" name="rating" id="rating-5" value="5" checked>
                                                         <label for="rating-5"></label>
                                                         <input type="radio" name="rating" id="rating-4" value="4">
                                                         <label for="rating-4"></label>
@@ -406,7 +394,7 @@ background-size: cover;">
                                                 </div>
                                             </div>
 
-                                            <input type="hidden" class="form-control b-0 ps-2" name="company_id" value="<?=$row[0]['rgid'] ?>">
+                                            <input type="hidden" class="form-control b-0 ps-2" name="company_id" value="<?= $row[0]['rgid'] ?>">
                                             <input type="hidden" class="form-control b-0 ps-2" name="type" value="0">
 
                                             <div class="col-lg-6 col-md-6 col-sm-12">
@@ -426,12 +414,11 @@ background-size: cover;">
                                             <div class="col-lg-12 col-md-12 col-sm-12">
                                                 <div class="form-group mb-3">
                                                     <label class="ft-medium small mb-1">Review</label>
-                                                    <textarea class="form-control rounded ht-140" maxlength="160" name="review" 
-                                                    placeholder="Review" required></textarea>
+                                                    <textarea class="form-control rounded ht-140" maxlength="160" name="review" placeholder="Review" required></textarea>
                                                     <div id="the-count" style="text-align: right;">
                                                         <span id="current">0</span>
                                                         <span id="maximum">/ 160</span>
-                                                      </div>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -456,11 +443,11 @@ background-size: cover;">
                     <!-- order Booking -->
                     <div class="jb-apply-form bg-white rounded py-4 px-4 mb-4">
                         <h4 class="ft-bold mb-1">Enquiry Now</h4>
-                         <p class="text-danger">Please fill all the details </p>
+                        <!-- <p class="text-danger">Please fill all the details </p> -->
 
                         <br>
 
-                        <form class="_apply_form_form" method="POST" action="<?= base_url('Home/enquiry_submit') ?>">
+                        <form class="_apply_form_form" name="form_submit" method="POST" action="<?= base_url('Home/enquiry_submit') ?>">
                             <?php
                             if ($this->session->has_userdata('msg')) {
                                 echo $this->session->userdata('msg');
@@ -480,20 +467,19 @@ background-size: cover;">
 
                             <div class="form-group">
                                 <div class="side-search-item">
-                                    <input type="tel" class="form-control b-0 ps-2" name="number" placeholder="Enter Number" maxlength="10" 
-                                    oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                    <input type="tel" class="form-control b-0 ps-2" name="number" placeholder="Enter Number" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="side-search-item">
                                     <!--<input class="form-control b-0 ps-2" maxlength="160" name="msg" id="enquirytext" placeholder="Enter Message(160 Words)" required>-->
                                     <textarea class="form-control b-0 ps-2" maxlength="160" name="msg" id="enquirytext" placeholder="Enter Message(160 Words)" required style="height: 49px !important; margin-top: 0px;"></textarea>
-                                   
+
                                 </div>
-                                 <div id="sthe-count" style="text-align: right;">
-                                                        <span id="scurrent">0</span>
-                                                        <span id="smaximum">/ 160</span>
-                                                      </div>
+                                <div id="sthe-count" style="text-align: right;">
+                                    <span id="scurrent">0</span>
+                                    <span id="smaximum">/ 160</span>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <input type="submit" value="Submit" class="btn btn-md rounded theme-bg text-light ft-medium fs-sm full-width">
@@ -546,85 +532,85 @@ background-size: cover;">
 
 <?php include 'includes/footer-link.php' ?>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 <script>
+    $('#enquirytext').keyup(function() {
 
-$('#enquirytext').keyup(function() {
-    
-  var scharacterCount = $(this).val().length,
-      scurrent = $('#scurrent'),
-      smaximum = $('#smaximum'),
-      stheCount = $('#sthe-count');
-    
-  scurrent.text(scharacterCount);
- 
-  
-  /*This isn't entirely necessary, just playin around*/
-  if (scharacterCount < 70) {
-    scurrent.css('color', '#666');
-  }
-  if (scharacterCount > 70 && scharacterCount < 90) {
-    scurrent.css('color', '#6d5555');
-  }
-  if (scharacterCount > 90 && scharacterCount < 100) {
-    scurrent.css('color', '#793535');
-  }
-  if (scharacterCount > 100 && scharacterCount < 120) {
-    scurrent.css('color', '#841c1c');
-  }
-  if (scharacterCount > 120 && scharacterCount < 139) {
-    scurrent.css('color', '#8f0001');
-  }
-  
-  if (scharacterCount >= 140) {
-    smaximum.css('color', '#8f0001');
-    scurrent.css('color', '#8f0001');
-    stheCount.css('font-weight','bold');
-  } else {
-    smaximum.css('color','#666');
-    stheCount.css('font-weight','normal');
-  }
-  
-      
-});
+        var scharacterCount = $(this).val().length,
+            scurrent = $('#scurrent'),
+            smaximum = $('#smaximum'),
+            stheCount = $('#sthe-count');
 
-$('textarea').keyup(function() {
-    
-  var characterCount = $(this).val().length,
-      current = $('#current'),
-      maximum = $('#maximum'),
-      theCount = $('#the-count');
-    
-  current.text(characterCount);
- 
-  
-  /*This isn't entirely necessary, just playin around*/
-  if (characterCount < 70) {
-    current.css('color', '#666');
-  }
-  if (characterCount > 70 && characterCount < 90) {
-    current.css('color', '#6d5555');
-  }
-  if (characterCount > 90 && characterCount < 100) {
-    current.css('color', '#793535');
-  }
-  if (characterCount > 100 && characterCount < 120) {
-    current.css('color', '#841c1c');
-  }
-  if (characterCount > 120 && characterCount < 139) {
-    current.css('color', '#8f0001');
-  }
-  
-  if (characterCount >= 140) {
-    maximum.css('color', '#8f0001');
-    current.css('color', '#8f0001');
-    theCount.css('font-weight','bold');
-  } else {
-    maximum.css('color','#666');
-    theCount.css('font-weight','normal');
-  }
-  
-      
-});
+        scurrent.text(scharacterCount);
+
+
+        /*This isn't entirely necessary, just playin around*/
+        if (scharacterCount < 70) {
+            scurrent.css('color', '#666');
+        }
+        if (scharacterCount > 70 && scharacterCount < 90) {
+            scurrent.css('color', '#6d5555');
+        }
+        if (scharacterCount > 90 && scharacterCount < 100) {
+            scurrent.css('color', '#793535');
+        }
+        if (scharacterCount > 100 && scharacterCount < 120) {
+            scurrent.css('color', '#841c1c');
+        }
+        if (scharacterCount > 120 && scharacterCount < 139) {
+            scurrent.css('color', '#8f0001');
+        }
+
+        if (scharacterCount >= 140) {
+            smaximum.css('color', '#8f0001');
+            scurrent.css('color', '#8f0001');
+            stheCount.css('font-weight', 'bold');
+        } else {
+            smaximum.css('color', '#666');
+            stheCount.css('font-weight', 'normal');
+        }
+
+
+    });
+
+    $('textarea').keyup(function() {
+
+        var characterCount = $(this).val().length,
+            current = $('#current'),
+            maximum = $('#maximum'),
+            theCount = $('#the-count');
+
+        current.text(characterCount);
+
+
+        /*This isn't entirely necessary, just playin around*/
+        if (characterCount < 70) {
+            current.css('color', '#666');
+        }
+        if (characterCount > 70 && characterCount < 90) {
+            current.css('color', '#6d5555');
+        }
+        if (characterCount > 90 && characterCount < 100) {
+            current.css('color', '#793535');
+        }
+        if (characterCount > 100 && characterCount < 120) {
+            current.css('color', '#841c1c');
+        }
+        if (characterCount > 120 && characterCount < 139) {
+            current.css('color', '#8f0001');
+        }
+
+        if (characterCount >= 140) {
+            maximum.css('color', '#8f0001');
+            current.css('color', '#8f0001');
+            theCount.css('font-weight', 'bold');
+        } else {
+            maximum.css('color', '#666');
+            theCount.css('font-weight', 'normal');
+        }
+
+
+    });
     $(document).ready(function() {
         $(".myInput").on("keyup", function() {
             var value = $(this).val().toLowerCase();
@@ -632,5 +618,24 @@ $('textarea').keyup(function() {
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });
+    });
+
+    $("form[name='form_submit']").validate({
+
+        errorClass: "error fail-alert",
+        validClass: "valid success-alert",
+        submitHandler: function(form) {
+            $(".btn").text("").html("Loading.. <i class='fa fa-spin fa-spinner'></i>").attr('disabled', true);
+            form.submit();
+        }
+    });
+    $("form[name='formsubmit']").validate({
+
+        errorClass: "error fail-alert",
+        validClass: "valid success-alert",
+        submitHandler: function(form) {
+            $(".btn").text("").html("Loading.. <i class='fa fa-spin fa-spinner'></i>").attr('disabled', true);
+            form.submit();
+        }
     });
 </script>

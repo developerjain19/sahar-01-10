@@ -19,11 +19,13 @@
 
 	<!-- Custom CSS -->
 	<link href="<?= base_url() ?>assets/css/styles.css" rel="stylesheet">
+	<link href="<?= base_url() ?>assets/css/plugins/graphics.css" rel="stylesheet">
 	<link href="<?= base_url() ?>assets/css/plugins/author.css" rel="stylesheet">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdn.ckeditor.com/4.15.0/standard/ckeditor.js"></script>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/placeholder-loading/dist/css/placeholder-loading.min.css">
 
 </head>
 

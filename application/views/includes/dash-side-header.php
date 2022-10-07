@@ -24,10 +24,10 @@
                 <ul data-submenu-title="Main Navigation">
                     <li class=""><a href="<?= base_url('dashboard') ?>"><i class="lni lni-dashboard me-2"></i>Dashboard</a></li>
                 </ul>
-                 <div class="nav-head d-flex justify-content-between align-items-center border-top"><span>Vcard/Website</span>
+                <a href="" data-bs-toggle="collapse" href="#MobNav" role="button" aria-expanded="false" aria-controls="MobNavs" class="nav-head d-flex justify-content-between align-items-center border-top"><span>Vcard/Website</span>
                     <div id="website-toggle" class="fas fa-plus"></div>
-                </div>
-                <ul data-submenu-title="Vcard/Website" class="website">
+                </a>
+                <ul data-submenu-title="Vcard/Website" class="website" id="MobNavs">
                     <li><a href="<?= base_url('choose-vcard') ?>"><i class="lni lni-postcard me-2"></i>Vcard Theme</a></li>
                     <li><a href="<?= base_url('bank-details') ?>"><i class="lni lni-money-protection me-2"></i>Add Bank Details </a></li>
                     <li><a href="<?= base_url('online-payment') ?>"><i class="lni lni-money-protection me-2"></i>Add Online Payment Details </a></li>
@@ -53,9 +53,9 @@
                     <div id="banner-toggle" class="fas fa-plus"></div>
                 </div>
                 <ul data-submenu-title="Banners" class="banner">
-                    <li><a href=""><i class="lni lni-files me-2"></i>Festive</a></li>
-                    <li><a href=""><i class="lni lni-files me-2"></i>Motivational</a></li>
-                    <li><a href=""><i class="lni lni-files me-2"></i>Business</a></li>
+                    <li><a href="<?= base_url() ?>graphic/<?= encryptId('1') ?>/Festive"><i class="lni lni-files me-2"></i>Festive</a></li>
+                    <li><a href="<?= base_url() ?>graphic/<?= encryptId('3') ?>/Motivational"><i class="lni lni-files me-2"></i>Motivational</a></li>
+                    <li><a href="<?= base_url() ?>graphic/<?= encryptId('4') ?>/Business"><i class="lni lni-files me-2"></i>Business</a></li>
                 </ul>
                 <div class="nav-head d-flex justify-content-between align-items-center border-top "><span>My Account</span>
                     <div id="account-toggle" class="fas fa-plus"></div>

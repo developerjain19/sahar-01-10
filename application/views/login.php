@@ -31,12 +31,12 @@
 							<form class="submit-form" method="POST">
 								<div class="form-group">
 									<label class="mb-1">Number</label>
-									<input type="tel" class="form-control rounded" name="mobile" maxlength="10">
+									<input type="tel" class="form-control rounded" id="mobile" name="mobile" maxlength="10">
 								</div>
 
 								<div class="form-group password">
 									<label class="mb-1">Password</label>
-									<input type="password" class="form-control rounded" name="password">
+									<input type="password" class="form-control rounded" id="password" name="password">
 									<i class="fas fa-eye"></i>
 								</div>
 
@@ -53,7 +53,7 @@
 								</div>
 
 								<div class="form-group">
-									<input type="submit" class="btn btn-md full-width theme-bg text-light rounded ft-medium" value="Login" />
+									<input type="submit" class="btn btn-md full-width theme-bg text-light rounded ft-medium" id="save-button" value="Login" />
 								</div>
 
 								<div class="form-group text-center mt-4 mb-0">
@@ -77,30 +77,35 @@
 
 
 
-<script>
-	$('input').attr('autocomplete', 'off');
 
-	$(function() {
-		$("input[name='mobile']").on('input', function(e) {
-			$(this).val($(this).val().replace(/[^0-9]/g, ''));
-		});
-	});
+ <script>
+     
 
 
-const pswrdField = document.querySelector(".submit-form .form-group input[type='password']"),
-		toggleIcon = document.querySelector(".submit-form .form-group i");
 
-	toggleIcon.onclick = () => {
-		if (pswrdField.type === "password") {
-			pswrdField.type = "text";
-			toggleIcon.classList.add("active");
-		} else {
-			pswrdField.type = "password";
-			toggleIcon.classList.remove("active");
-		}
-	}
+     $('input').attr('autocomplete', 'off');
+
+     $(function() {
+         $("input[name='mobile']").on('input', function(e) {
+             $(this).val($(this).val().replace(/[^0-9]/g, ''));
+         });
+     });
 
 	
-</script>
+
+
+     const pswrdField = document.querySelector(".submit-form .form-group input[type='password']"),
+         toggleIcon = document.querySelector(".submit-form .form-group i");
+
+     toggleIcon.onclick = () => {
+         if (pswrdField.type === "password") {
+             pswrdField.type = "text";
+             toggleIcon.classList.add("active");
+         } else {
+             pswrdField.type = "password";
+             toggleIcon.classList.remove("active");
+         }
+     }
+ </script>
 
 <?php include 'includes/footer-link.php' ?>

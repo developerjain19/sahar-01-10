@@ -61,7 +61,7 @@
                     foreach ($category as $row1) {
 
                 ?>
-                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6">
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-6" >
                             <div class="cats-wrap text-center">
                                 <a href="<?= base_url() ?>browse_service?category=<?= encryptId($row1['cate_id']) ?>" class="Goodup-catg-wrap">
                                     <div class="Goodup-catg-caption">

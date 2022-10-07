@@ -4,6 +4,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Home extends CI_Controller
 {
 
+
+
     public function index()
     {
         $data['title'] = "Home |  SaharDirectory - Get a Personal Visiting Card";
@@ -17,6 +19,10 @@ class Home extends CI_Controller
         $data['search_state'] = $this->CommonModal->getAllRows('tbl_state');
         $data['search_cities'] = $this->CommonModal->getAllRows('tbl_cities');
         $data['search_company'] = $this->CommonModal->getAllRows('company');
+
+        $data['search_product'] = $this->CommonModal->runQuery('SELECT * FROM `product` GROUP BY `product_title`');
+
+
         $this->load->view('home', $data);
     }
 
@@ -35,6 +41,18 @@ class Home extends CI_Controller
         $this->load->view('blog', $data);
     }
 
+    public function blog_details()
+    {
+        $id = $this->uri->segment(2);
+        $title = $this->uri->segment(3);
+        $bid  = decryptId($id);
+
+        $data['title'] =  $title . " |  SaharDirectory - Get a Personal Visiting Card";
+        $data['blog'] =  $this->CommonModal->getRowById('blog', 'blog_id', $bid);
+
+        $this->load->view('blog-details', $data);
+    }
+
     public function privacy_policy()
     {
         $data['title'] = "Privacy Policy |  SaharDirectory - Get a Personal Visiting Card";
@@ -51,9 +69,6 @@ class Home extends CI_Controller
         $this->load->view('term-condition', $data);
     }
 
-
-
-
     public function allcategory()
     {
         $data['title'] = "Home |  SaharDirectory - Get a Personal Visiting Card";
@@ -63,15 +78,13 @@ class Home extends CI_Controller
     }
 
 
-
-
     public function subcate_list()
     {
         $cateid = $this->input->get('category');
         $data['cateid'] = decryptId($cateid);
 
-        $data['title'] = "Home |  SaharDirectory - Get a Personal Visiting Card";
-        $data['category'] = $this->CommonModal->getAllRowsInOrder('company_category', 'cate_id', 'DESC');
+        $data['title'] = "Subcategory List |  SaharDirectory - Get a Personal Visiting Card";
+        $data['category'] = $this->CommonModal->getAllRowsInOrder('company_category', 'category', 'ASC');
         $data['subcategory'] = $this->CommonModal->getAllRowsInOrder('company_subcategory', 'subcat_id', 'DESC');
 
         $this->load->view('subcate-list', $data);
@@ -110,6 +123,7 @@ class Home extends CI_Controller
         $data['search_state'] = $this->CommonModal->getAllRows('tbl_state');
         $data['search_cities'] = $this->CommonModal->getAllRows('tbl_cities');
         $data['search_company'] = $this->CommonModal->getAllRows('company');
+        $data['search_product'] = $this->CommonModal->runQuery('SELECT * FROM `product` GROUP BY `product_title`');
 
 
         if ($subcategory != '') {
@@ -118,7 +132,7 @@ class Home extends CI_Controller
             $data['listing'] = $this->CommonModal->getAllRowsInOrder('company', 'company_id ', 'DESC');
         }
         $data['title'] = "Listings |  SaharDirectory - Get a Personal Visiting Card";
-        $data['category'] = $this->CommonModal->getAllRowsInOrder('company_category', 'cate_id', 'DESC');
+        $data['category'] = $this->CommonModal->getAllRowsInOrder('company_category', 'category', 'ASC');
 
         $this->load->view('listings', $data);
     }
@@ -159,9 +173,6 @@ class Home extends CI_Controller
         $this->load->view('filter', $data);
     }
 
-
-
-
     public function listing_details()
     {
         $comid = $this->uri->segment(5);
@@ -178,6 +189,7 @@ class Home extends CI_Controller
         $data['search_state'] = $this->CommonModal->getAllRows('tbl_state');
         $data['search_cities'] = $this->CommonModal->getAllRows('tbl_cities');
         $data['search_company'] = $this->CommonModal->getAllRows('company');
+        $data['search_product'] = $this->CommonModal->runQuery('SELECT * FROM `product` GROUP BY `product_title`');
         $this->load->view('listing-details', $data);
     }
 
@@ -250,25 +262,42 @@ class Home extends CI_Controller
     }
 
 
+
     public function search()
     {
 
-
-  $data['search_subcategory'] = $this->CommonModal->getAllRows('company_subcategory');
+        $data['search_subcategory'] = $this->CommonModal->getAllRows('company_subcategory');
         $data['search_category'] = $this->CommonModal->getAllRows('company_category');
         $data['search_state'] = $this->CommonModal->getAllRows('tbl_state');
         $data['search_cities'] = $this->CommonModal->getAllRows('tbl_cities');
         $data['search_company'] = $this->CommonModal->getAllRows('company');
+        $data['search_product'] = $this->CommonModal->runQuery('SELECT * FROM `product` GROUP BY `product_title`');
 
         $conditions = array();
         $serch_sql =  "SELECT * FROM company";
-
+        $comid = array();
+        // echo '<pre>';
+        // print_r($_POST);
+        // exit();
         if ($this->input->post('search') || $this->input->post('company-location') != '') {
             $searchname = trim($this->input->post('search'));
             $searchlocation = trim($this->input->post('company-location'));
 
             if ($searchname != '') {
                 $conditions[] = " `search` LIKE '%{$searchname}%' ";
+
+                $product =  $this->CommonModal->runQuery("SELECT * FROM  `product`  WHERE `product_title` LIKE '%{$searchname}%'  ");
+                // print_r($product);
+                if ($product != '') {
+                    if (count($product) > 0) {
+                        foreach ($product as $pro) {
+                            $comid[]  = $pro['company_id'];
+                        }
+                        $conditions[] = "  `rgid` IN  ('" . implode('\',\'', $comid) . "') ";
+                    }
+                } else {
+                    // echo 'df';
+                }
             }
 
             if ($searchlocation != '') {
@@ -277,8 +306,7 @@ class Home extends CI_Controller
 
             if (count($conditions) > 0) {
                 $serch_sql .= " WHERE";
-                $serch_sql .= implode(' AND ', $conditions);
-
+                $serch_sql .= implode(' OR ', $conditions);
                 // echo $serch_sql;
             }
 
@@ -349,7 +377,6 @@ Team Sahar Directory
 
             if (!empty($login_data)) {
 
-
                 if ($login_data[0]['otp_verified'] != 1) {
                     $this->session->set_flashdata('loginError', '<h6 class="alert alert-warning">Oops ! Your number is not varified please Register again </h6>');
                     redirect(base_url('login'));
@@ -385,17 +412,18 @@ Team Sahar Directory
         $data['title'] = 'Register | SaharDirectory - Get a Personal Visiting Card';
         if (count($_POST) > 0) {
             $contact = $this->input->post('mobile');
-            $count_mobile = $this->CommonModal->getNumRows('tbl_registration', array('mobile' => $this->input->post('mobile')));
-            $count_email = $this->CommonModal->getNumRows('tbl_registration', array('email' => $this->input->post('email')));
+            $count_mobile = $this->CommonModal->getNumRows('tbl_registration', array('mobile' => $this->input->post('mobile'), 'email' => $this->input->post('email')));
+
+
             $company_count = $this->CommonModal->getNumRows('company', array('company_contact' => $this->input->post('mobile'), 'company_email' => $this->input->post('email')));
-            if ($count_mobile > 0 || $company_count > 0 || $count_email > 0) {
+            if ($count_mobile > 0 || $company_count > 0) {
                 $this->session->set_userdata('msg', '<h6 class="alert alert-danger">You have already registered with this email id or contact no.</h6>');
                 redirect(base_url('signup'));
             } else {
                 $post = $this->input->post();
                 $formdata = $this->input->post();
                 if ($post['password'] !=  $post['cpassword']) {
-                    $this->session->set_userdata('msg', '<h6 class="alert alert-warning">Your Password and Confirm Password are not match f.</h6>');
+                    $this->session->set_userdata('msg', '<h6 class="alert alert-warning">Your Password and Confirm Password are not match .</h6>');
                     redirect(base_url('signup'));
                 } else {
                     $post['otp'] =   rand(1111, 9999);
@@ -406,8 +434,6 @@ Team Sahar Directory
                 }
             }
         } else {
-
-
             $this->load->view('signup', $data);
         }
     }
@@ -437,19 +463,20 @@ Team Sahar Directory
             $post =  $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_otp_id'));
             $update =  $this->CommonModal->updateRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_otp_id'), array('otp_verified' => '1'));
             if ($update) {
+
+
+
                 $message = sendmail($post[0]['name'], $post[0]['mobile'],  $post[0]['password']);
                 mailmsg($post[0]['email'], 'Registered with sahardirectory | Welcome User', $message);
                 $debug = true;
 
-                $msg = 'Hi ' .  $post[0]['name'] . ', Your Login Id- ' . $post[0]['mobile'] . 'and Password-  ' . $post[0]['password'] . '.
+                $msg = 'Hi ' .  $post[0]['name'] . ', Your Login Id- ' . $post[0]['mobile'] . ' and Password-  ' . $post[0]['password'] . '.
 Thanks 
 Team Sahar Directory 
 (Ekaum)';
 
                 SMSSend($post[0]['mobile'], $msg, '1707165665533059542', $debug);
                 $this->session->set_userdata('msg', '<span class="alert alert-success">OTP verified , Login with your contact no. to continue.</span>');
-                
-
             } else {
                 $this->session->set_userdata('msg', '<span class="alert alert-success">Your Mobile no has been verified. 
                 Pl wait our team is reviewing your profile and will update you soon. Thanks.</span>');
@@ -459,13 +486,12 @@ Team Sahar Directory
             $this->session->unset_userdata('otp');
             $this->session->unset_userdata('doctor');
             $this->session->unset_userdata('login_user_otp_id');
+
+            $this->session->set_userdata(array('login_user_id' => $post[0]['rgid'], 'login_user_name' => $post[0]['name'], 'login_user_emailid' => $post[0]['email'], 'login_user_contact' => $post[0]['mobile'], 'login_user_profile' => $post[0]['profile']));
         } else {
             echo '0';
         }
     }
-
-
-
     public function my_profile()
     {
         if (!$this->session->has_userdata('login_user_id')) {
@@ -473,12 +499,8 @@ Team Sahar Directory
         }
 
         if (count($_POST) > 0) {
-
-
             $post = $this->input->post();
             extract($this->input->post());
-
-
 
             $state = getRowById('tbl_state', 'state_id',  $_POST['company_state']);
             $city = getRowById('tbl_cities', 'id',  $_POST['company_city']);
@@ -491,11 +513,6 @@ Team Sahar Directory
             $search = trim($search);
 
             $post['search'] =  strtolower($search);
-
-            // print_r($post['search']);
-
-            // exit();
-
 
             $uid = sessionId('login_user_id');
 
@@ -677,7 +694,7 @@ Team Sahar Directory
 
     public function getcity()
     {
-        
+
         $data['datacomrow'] = $this->CommonModal->getRowById('company', 'rgid', $this->session->userdata('login_user_id'));
         $state = $this->input->post('state');
         $data['city'] = $this->CommonModal->getRowByIdInOrder('tbl_cities', array('state_id' => $state), 'name', 'asc');
@@ -999,6 +1016,9 @@ Team Sahar Directory
 
     public function section_category()
     {
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
         $data['title'] = "Section Category Add | SaharDirectory - Get a Personal Visiting Card";
         $data['login_user'] = $this->session->userdata();
         $data['profiledata'] = $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_id'));
@@ -1038,6 +1058,9 @@ Team Sahar Directory
 
     public function update_section_category($pid)
     {
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
         $data['title'] = "section Category Edit | SaharDirectory - Get a Personal Visiting Card";
         $data['login_user'] = $this->session->userdata();
         $data['profiledata'] = $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_id'));
@@ -1071,6 +1094,9 @@ Team Sahar Directory
 
     public function section_list()
     {
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
         $data['title'] = "section | SaharDirectory - Get a Personal Visiting Card";
         $data['login_user'] = $this->session->userdata();
         $data['profiledata'] = $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_id'));
@@ -1099,6 +1125,9 @@ Team Sahar Directory
     }
     public function section_add()
     {
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
         $data['title'] = "section Add | SaharDirectory - Get a Personal Visiting Card";
         $data['login_user'] = $this->session->userdata();
         $data['profiledata'] = $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_id'));
@@ -1127,6 +1156,9 @@ Team Sahar Directory
     }
     public function update_section($pid)
     {
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
         $data['title'] = "section Edit | SaharDirectory - Get a Personal Visiting Card";
         $data['login_user'] = $this->session->userdata();
         $data['profiledata'] = $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_id'));
@@ -1163,6 +1195,9 @@ Team Sahar Directory
 
     public function bank_details()
     {
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
         $data['title'] = "Bank Details  | SaharDirectory - Get a Personal Visiting Card";
         $data['login_user'] = $this->session->userdata();
         $data['profiledata'] = $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_id'));
@@ -1173,7 +1208,7 @@ Team Sahar Directory
             $counts = $this->CommonModal->getRowById('bank_details', 'company_id', sessionId('login_user_id'));
 
             if ($counts > 0) {
-                
+
                 $insert = $this->CommonModal->updateRowById('bank_details', 'company_id', sessionId('login_user_id'), $post);
             } else {
                 $insert = $this->CommonModal->insertRowReturnId('bank_details', $post);
@@ -1194,6 +1229,9 @@ Team Sahar Directory
 
     public function online_payment()
     {
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
         $data['title'] = "Online Payment | SaharDirectory - Get a Personal Visiting Card";
         $data['login_user'] = $this->session->userdata();
         $data['profiledata'] = $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_id'));
@@ -1233,6 +1271,9 @@ Team Sahar Directory
 
     public function update_online_payment($pid)
     {
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
         $data['title'] = "Online Payment Edit | SaharDirectory - Get a Personal Visiting Card";
         $data['login_user'] = $this->session->userdata();
         $data['profiledata'] = $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_id'));
@@ -1267,6 +1308,31 @@ Team Sahar Directory
         } else {
             $this->load->view('online-payment', $data);
         }
+    }
+
+    public function graphic($id, $gtitle)
+    {
+
+        $get = decryptId($id);
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
+        $data['title'] = "Graphics | SaharDirectory - Get a Personal Visiting Card";
+        $data['gtitle'] = $gtitle;
+        $data['graphic'] = $this->CommonModal->getRowByMoreId('company_graphics', array('type' => $get));
+        $this->load->view('graphic', $data);
+    }
+
+    public function graphic_layout($id)
+    {
+
+        $get = decryptId($id);
+        if (!$this->session->has_userdata('login_user_id')) {
+            redirect(base_url('login'));
+        }
+        $data['title'] = "Download Graphics | SaharDirectory - Get a Personal Visiting Card";
+        $data['graph'] = $this->CommonModal->getRowByMoreId('company_graphics', array('id' => $get));
+        $this->load->view('graphic-layout', $data);
     }
 
     public function logout()

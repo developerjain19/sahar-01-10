@@ -2,14 +2,14 @@
 
 session_start();
 // $conn = mysqli_connect("localhost", "root", "", "sahar-new") or die("Error " . mysqli_error($conn));
-$conn = mysqli_connect("localhost", "exzpblvz_sahar_user", "d?Ec(YNe,d}h", "exzpblvz_sahar_db") or die("Error " . mysqli_error($conn));
+$conn = mysqli_connect("localhost", "sahardir_sahar", "d?Ec(YNe,d}h", "sahardir_sahar") or die("Error " . mysqli_error($conn));
 
 date_default_timezone_set("Asia/Kolkata");
 
 
 define('product_url', 'http://SaharDirectory.com/img/product/');
 define('product_location', '../../img/product/');
-define('website_url', 'https://webangeltech.com/sahardirectory/');
+define('website_url', 'https://sahardirectory.com//');
 
 
 

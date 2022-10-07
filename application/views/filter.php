@@ -47,8 +47,8 @@
 
                                                         <div class="vrt-list-features mt-2 mb-2">
                                                             <ul>
-                                                                <li><a href="javascript:vo'listing'id(0);"><?= strtoupper($cate[0]['category']) ?></a></li>
-                                                                <li><a href="javascript:void(0);"><?= strtoupper($subcate[0]['subcategory']) ?></a></li>
+                                                                <li><a href="<?= base_url() ?>browse_service?category=<?= encryptId($cate[0]['cate_id']) ?>"><?= strtoupper($cate[0]['category']) ?></a></li>
+                                                                <li><a href="<?= base_url() ?>listing?subcate=<?= encryptId($subcate[0]['subcat_id']) ?>&category=<?= encryptId($cate[0]['cate_id']) ?>"><?= strtoupper($subcate[0]['subcategory']) ?></a></li>
 
                                                             </ul>
                                                         </div>

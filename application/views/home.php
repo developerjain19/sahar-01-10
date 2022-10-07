@@ -11,8 +11,8 @@
 						<h1 class="banner_title ft-bold mb-1">Digital Impression,</br>
 							The First Impression</h1>
 						<p class="fs-md ft-medium">Sahar Directory Helps You To Get A Digital Impression Via Generating Your Digital Visiting Card</br> With Your Website Here That Is Smart & Elegant.</p>
-						
-					
+
+
 					</div>
 				</div>
 				<div class="flex-box">
@@ -63,6 +63,12 @@
 
 											foreach ($search_subcategory as $ssubcategory) { ?>
 												<option value="<?= trim(strtolower($ssubcategory['subcategory'])) ?>">
+
+												<?php }
+												?>
+												<?php
+												foreach ($search_product as $sproduct) { ?>
+												<option value="<?= trim(strtolower($sproduct['product_title'])) ?>">
 
 												<?php }
 												?>
@@ -169,7 +175,7 @@
 									if (!empty($services)) {
 										foreach ($services as $serv) {
 											$state = getRowById('tbl_state', 'state_id', $serv['company_state']);
-											 $city = getRowById('tbl_cities', 'id', $serv['company_city']);
+											$city = getRowById('tbl_cities', 'id', $serv['company_city']);
 											$cat_tag = runQuery("SELECT * FROM company_category WHERE cate_id = '" . $serv['company_category'] . "'");
 											$sub_tag = runQuery("SELECT * FROM company_subcategory WHERE subcat_id = '" . $serv['company_subcategory'] . "'")
 									?>
@@ -187,17 +193,17 @@
 													<div class="Goodup-grid-fl-wrap">
 														<div class="Goodup-caption px-3 py-2">
 															<div class="Goodup-author">
-															     <?php if ($serv['company_logo']  != '') { ?>
-                                                                    <img src="<?= base_url() ?>uploads/company/<?= $serv['company_logo'] ?>" class="img-fluid circle" alt="<?= $serv['company_name'] ?>" style="object-fit: cover; height: 100%;" />
-                                                                <?php
-                                                                } else {
-                                                                    echo '<img src="' . base_url() . 'assets/images/user_logo.png" class="img-fluid circle" alt="Sahar Directory" style="object-fit: contain;" />';
-                                                                }
-                                                                ?>
-															    
-															 
-															    
-															    </div>
+																<?php if ($serv['company_logo']  != '') { ?>
+																	<img src="<?= base_url() ?>uploads/company/<?= $serv['company_logo'] ?>" class="img-fluid circle" alt="<?= $serv['company_name'] ?>" style="object-fit: cover; height: 100%;" />
+																<?php
+																} else {
+																	echo '<img src="' . base_url() . 'assets/images/user_logo.png" class="img-fluid circle" alt="Sahar Directory" style="object-fit: contain;" />';
+																}
+																?>
+
+
+
+															</div>
 															<div class="Goodup-cates multi"><a href="" class="cats-1"><?= $cat_tag[0]['category'] ?></a><a href="" class="cats-2"><?= $sub_tag[0]['subcategory'] ?></a></div>
 															<h4 class="mb-0 ft-medium medium"><a href="<?= base_url() ?>listing/<?= url_title($city[0]['name']) ?>/<?= url_title(strtolower($cat_tag[0]['category'])); ?>/<?= url_title($serv['company_name']) ?>/<?= encryptId($serv['company_id']) ?>" class="text-dark fs-md"><?php echo $serv['company_name']; ?></a></h4>
 															<div class="Goodup-location"><i class="fas fa-map-marker-alt me-1 theme-cl"></i><?= $serv['company_address'] ?></div>
@@ -281,7 +287,7 @@
 									<div class="Goodup-catg-caption">
 										<h4 class="fs-md mb-0 ft-medium m-catrio"><?php echo $row1['category']; ?></h4>
 										<?php
-										$num = getNumRows('company_subcategory', array('category_id' => $row1['cate_id']));
+										$num = getNumRows('company', array('company_category' => $row1['cate_id']));
 										echo '<span class="text-muted">' . $num . ' Listings</span>';
 										?>
 									</div>
@@ -420,12 +426,12 @@
 						<div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
 							<div class="gup_blg_grid_box">
 								<div class="gup_blg_grid_thumb">
-									<a href="blog-detail.php?blog=<?php echo $blog['blog_id']; ?>"><img src="uploads/blogs/<?php echo 'blog-min.jpg'; ?>" class="img-fluid" alt=""></a>
+									<a href="<?= base_url() ?>blog-detail/<?= encryptId($blog['blog_id']); ?>/<?= url_title($blog['blog_name']); ?>"><img src="uploads/blogs/<?= $blog[0]['blog_logo'] ?>" class="img-fluid" alt=""></a>
 								</div>
 								<div class="gup_blg_grid_caption">
 
 									<div class="blg_title">
-										<h4><a href="blog-detail.php?blog=<?php echo $blog['blog_id']; ?>"><?php echo $blog['blog_name']; ?></a></h4>
+										<h4><a href="<?= base_url() ?>blog-detail/<?= encryptId($blog['blog_id']); ?>/<?= url_title($blog['blog_name']); ?>"><?php echo $blog['blog_name']; ?></a></h4>
 									</div>
 									<div class="blg_desc">
 										<p><?php echo $blog['blog_content']; ?></p>
@@ -438,7 +444,7 @@
 												<ul class="blog_ul">
 													<li>
 														<div class="elsio_ic"><i class="fa fa-eye text-success"></i></div>
-														<a href="blog-detail.php?blog=<?php echo $blog['blog_id']; ?>">Read More</a>
+														<a href="<?= base_url() ?>blog-detail/<?= encryptId($blog['blog_id']); ?>/<?= url_title($blog['blog_name']); ?>">Read More</a>
 													</li>
 													<li class="text-right">
 														<div class="elsio_ic"><i class="fa fa-clock text-warning"></i></div>
@@ -459,7 +465,7 @@
 			</div>
 
 			<div class="flex-box">
-				<a href="<?= base_url('blog') ?>" class="btn btn-md rounded hover-theme home_btn">View More<i class="lni lni-arrow-right-circle ms-2"></i></a>
+				<a href="<?= base_url('blogs') ?>" class="btn btn-md rounded hover-theme home_btn">View More<i class="lni lni-arrow-right-circle ms-2"></i></a>
 			</div>
 
 		</div>

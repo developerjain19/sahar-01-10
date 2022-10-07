@@ -6,8 +6,6 @@ $route['default_controller'] = 'Home';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-
-
 //---------- User dashboard----------
 
 $route['my-profile'] = "Home/my_profile";
@@ -31,7 +29,8 @@ $route['update-section/(:any)'] = 'home/update_section/$1';
 $route['bank-details'] = "Home/bank_details";
 $route['online-payment'] = 'Home/online_payment';
 $route['get_company_vcontact'] = 'Home/get_company_vcontact';
-
+$route['graphic/(:any)/(:any)'] = 'Home/graphic/$1/$2';
+$route['download-graphic/(:any)'] = 'Home/graphic_layout/$1';
 $route['update-online-payment/(:any)'] = 'home/update_online_payment/$1';
 
 //----------website Route----------
@@ -48,6 +47,7 @@ $route['blogs'] = 'Home/blog';
 $route['privacy-policy'] = 'Home/privacy_policy';
 $route['term-condition'] = 'Home/term_condition';
 $route['checkotp'] = 'Home/checkotp';
+$route['blog-detail/(:any)/(:any)'] = 'home/blog_details/$1/$2';
 
 $route['listing/(:any)/(:any)/(:any)/(:any)'] = 'Home/listing_details/$1/$2/$3/$4';
 $route['forget-password'] = 'Home/forget_password';
@@ -55,7 +55,7 @@ $route['track'] = 'Home/track';
 
 
 
+
 //-------------Vacrd -------
 
 $route['sahar/(:any)/(:any)/(:any)'] = 'Vcard/sahar/$1/$2/$3';
-

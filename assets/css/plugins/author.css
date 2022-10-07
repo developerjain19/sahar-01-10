@@ -61,10 +61,6 @@
   font-weight: bolder;
 }
 
-.contact_detials {
- width:70%;
-}
-
 .author_card_wrapper .contact_detials {
   margin-top: 10px;
   padding-left: 10px;
@@ -102,12 +98,11 @@
   color: #fff;
 }
 
-@media (max-width: 1400px){
-      .author_card_wrapper .social_icon{
-          width: 45% !important;
-      }
+@media (max-width: 1400px) {
+  .author_card_wrapper .social_icon {
+    width: 45% !important;
   }
-
+}
 @media (max-width: 786px) {
   .author_card_wrapper {
     padding: 10px 0 0;

@@ -105,7 +105,7 @@
 
                 </div>
                 <div class="col-xl-9 col-lg-8 col-md-12 col-sm-12">
-
+				
                     <!-- row -->
                     <div class="row justify-content-center g-2">
                         <div class="col-xl-12 col-lg-12 col-md-12 col-12">
@@ -161,8 +161,12 @@
                  },
                 success: function(data) {
                     // console.log(data);
-                    $('#filter_data').html(data);
-                }
+                   $('#filter_data').html(data); 
+                    
+                },
+              beforeSend: function () {
+                            $('#filter_data').html("<div class='ph-item'><div class='ph-col-4'><div class='ph-picture'></div></div><div><div class='ph-row'><div class='ph-col-12 big'></div><div class='ph-col-12'></div><div class='ph-col-12'></div><div class='ph-col-12'></div><div class='ph-col-12'></div></div></div></div><div class='ph-item'><div class='ph-col-4'><div class='ph-picture'></div></div><div><div class='ph-row'><div class='ph-col-12 big'></div><div class='ph-col-12'></div><div class='ph-col-12'></div><div class='ph-col-12'></div><div class='ph-col-12'></div></div></div></div><div class='ph-item'><div class='ph-col-4'><div class='ph-picture'></div></div><div><div class='ph-row'><div class='ph-col-12 big'></div><div class='ph-col-12'></div><div class='ph-col-12'></div><div class='ph-col-12'></div><div class='ph-col-12'></div></div></div></div>");
+                        }
             });
         }
 
