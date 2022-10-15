@@ -21,6 +21,7 @@ $output .= '
                 <th>Subcategory</th>
                 <th>Category</th>
                 <th>Status</th>
+                 <th>Edit</th>
                   <th>Action</th>
            
                 
@@ -35,24 +36,25 @@ $output .= '
                 <th>Subcategory</th>
                 <th>Category</th>
                 <th>Status</th>
+                 <th>Edit</th>
                   <th>Action</th>
             </tr>
           </tfoot>
           <tbody>
      ';
 while ($select_subcategory_row = $select_subcategory->fetch_assoc()) {
-	if ($select_subcategory_row["status"] == "0") {
-		$option_status = "
+  if ($select_subcategory_row["status"] == "0") {
+    $option_status = "
                                 <option value=0>Active </option>
                                 <option value=1>Deactive</option>
                               ";
-	} else {
-		$option_status = "
+  } else {
+    $option_status = "
                                 <option value=1>Deactive</option>
                                 <option value=0>Active </option>
                               ";
-	}  
-	$output .= '     <tr>
+  }
+  $output .= '     <tr>
                                 <td> ' . $sno . ' </td>
                                
                                 <td>' . $select_subcategory_row["date"] . '</td>
@@ -60,17 +62,19 @@ while ($select_subcategory_row = $select_subcategory->fetch_assoc()) {
                                 <td>' . $select_subcategory_row["subcategory"] . '</td>
                                 <td>
                                   <div class="form-group">
-                                      <select class="form-control show-tick" name="status" id="status" onmousedown="this.value=" ";" onchange="edit_subcategory(' . 
-                                      $select_subcategory_row["subcat_id"] . ' , this.value , id);" >
+                                      <select class="form-control show-tick" name="status" id="status" onmousedown="this.value=" ";" onchange="edit_subcategory(' . $select_subcategory_row["subcat_id"] . ' , this.value , id);" >
                                           ' . $option_status . '
                                       </select>
                                   </div>
                                 </td>
-                              <td><a href="ajax/category-del.php?id='.$select_category_row["cate_id"].'" class="btn btn-primary">Delete</td>
+                                <td>
+                                <a class="btn btn-warning btn_edit" href="edit-subcategory.php?id=' . $select_subcategory_row["subcat_id"] . '"><i class="fa fa-edit"></i> Edit </a>
+                            </td>
+                              <td><a href="ajax/subcategory-del.php?id=' . $select_subcategory_row["subcat_id"] . '" class="btn btn-primary">Delete</td>
                               
                             </tr>
                    ';
-	$sno++;
+  $sno++;
 }
 
 // <button class="btn btn-danger btn_delete" name="delete_btn" data-sid2="' . $select_subcategory_row["company_id"] . '"><i class="fa fa-trash"></i> Delete </button>
@@ -84,39 +88,40 @@ echo $output;
 ?>
 
 <script>
-  $(function () {
+  $(function() {
 
     $('#select_company_subcategory').DataTable({
-      'paging'      : true,
+      'paging': true,
       'lengthChange': true,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : true
+      'searching': true,
+      'ordering': true,
+      'info': true,
+      'autoWidth': true
     })
   })
 </script>
 
 <script>
-        $(function(){
-            $("#export").click(function(){
-                $("#select_company_subcategory").tableToCSV();
-            });
-        });
-        function printData()
-{
+  $(function() {
+    $("#export").click(function() {
+      $("#select_company_subcategory").tableToCSV();
+    });
+  });
 
-}
-function printTable() 
-{
-   var divToPrint=document.getElementById("select_company_subcategory");
-   newWin= window.open("");
-   newWin.document.write(divToPrint.outerHTML);
-   newWin.print();
-   newWin.close();
-}
-function defult_image(company_logo_table) {
-    $('#'+company_logo_table).attr('src', 'images/default-img.gif');
-    
-}
-    </script>
+  function printData() {
+
+  }
+
+  function printTable() {
+    var divToPrint = document.getElementById("select_company_subcategory");
+    newWin = window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+  }
+
+  function defult_image(company_logo_table) {
+    $('#' + company_logo_table).attr('src', 'images/default-img.gif');
+
+  }
+</script>

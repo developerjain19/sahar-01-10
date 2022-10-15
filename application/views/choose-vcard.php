@@ -68,7 +68,7 @@ $cityfetch = getRowById('tbl_cities', 'id', $getcard[0]['company_city']);
 
     <?php include 'includes/dash-top-header.php' ?>
 
-    <div class="goodup-dashboard-wrap gray px-4 py-5">
+    <div class="goodup-dashboard-wrap gray px-4 py-5 mobile_author">
         <?php include 'includes/dash-side-header.php' ?>
         <div class="goodup-dashboard-content">
             <div class="dashboard-tlbar d-block mb-5">
@@ -115,9 +115,9 @@ $cityfetch = getRowById('tbl_cities', 'id', $getcard[0]['company_city']);
                                             <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
                                                 <div class="form-group">
                                                     <label class="mb-1">Your Vcard/website URL ( Note : Only Use (A-Z),(a-z),(0-9),(_) ) <i><span style="color:red;font-size:12px;" id="web_company_name_msg"></span><span style="color:green;font-size:12px;" id="web_company_name_msgs"></span></i></label>
-                                                    <input type="text" class="form-control rounded" placeholder="Ex: yourcompany-name" name="company_web_title" id="web_company_name" value="<?= (($getcard != '') ? $getcard['0']['company_web_title'] : '') ?>" <?= (($getcard['0']['company_web_title'] != '') ? 'readonly' : '') ?> autocomplete="off" />
+                                                    <input type="text" class="form-control rounded" placeholder="Ex: yourcompany-name" name="company_web_title" id="web_company_name" value="<?= (($getcard != '') ? (url_title($getcard['0']['company_web_title'], 'dash', true)) : '') ?>" <?= (($getcard['0']['company_web_title'] != '') ? 'readonly' : '') ?> autocomplete="off" />
 
-                                                     <?= (($getcard['0']['company_web_title'] != '') ? '<p class=""> If you want to change your Vcard Url Please Chat with us on <a target="_blank" href="https://api.whatsapp.com/send?phone=+917419272427&text=Hi, I Want to Change my vcard url" class="commonbutton text-success"><i class="lni lni-whatsapp"></i> Whastapp</a></p>' : '') ?>
+                                                     <?= (($getcard['0']['company_web_title'] != '') ? '<p class=""> If you want to change your Vcard Url Please Chat with us on <a target="_blank" href="https://api.whatsapp.com/send?phone=+917419272427&text=Hi, I Want to Change my vcard url" class="commonbutton text-success"><i class="lni lni-whatsapp"></i> Whatsapp</a></p>' : '') ?>
                                                     <?php
                                                     if($getcard['0']['company_web_title'] == ''){
                                                     ?>
@@ -208,7 +208,7 @@ $cityfetch = getRowById('tbl_cities', 'id', $getcard[0]['company_city']);
             $('#web_company_name_msg').text('Company web name is required');
         } else {
             var str = $('#web_company_name').val();
-            str = str.replace(/[^\w\s_]/gi, '-');
+            str = str.replace(/[^\w_]/gi, '-');
             $('#web_company_name').val(str);
 
             $('#web_company_name').text('');

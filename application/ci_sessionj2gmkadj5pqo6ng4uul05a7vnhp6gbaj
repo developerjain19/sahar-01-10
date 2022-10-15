@@ -1,0 +1,11 @@
+__ci_last_regenerate|i:1665844674;login_user_contact|s:10:"6265965711";verified_otp|s:1:"1";login_user_id|s:3:"198";login_user_name|s:12:"Sagar Thakur";login_user_emailid|s:25:"sagarthakur6947@gmail.com";login_user_profile|N;vermsg|s:489:"<script type="text/javascript">
+                        $(document).ready(function() {
+                            swal({
+                                title: "Welcom Sagar Thakur!",
+                                text: "Your mobile number is verified now",
+                                icon: "success",
+                                button: "Ok",
+                                timer: 4000
+                            });
+                        });
+                    </script>";

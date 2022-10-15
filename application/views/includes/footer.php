@@ -33,6 +33,8 @@
 							<li><a href="<?= base_url('privacy-policy') ?>">Privacy Policy</a></li>
 							<!--<li><a href="#">Refund Policy</a></li>-->
 							<li><a href="<?= base_url('term-condition') ?>">Terms & Condition</a></li>
+                          <li><a href="#"></a>Disclaimer</li>
+                          <li><a href="#"></a>Refund Policy</li>
 						</ul>
 					</div>
 				</div>
@@ -43,14 +45,6 @@
 						<ul class="footer-menu">
 							<li><a href="<?= base_url('home') ?>">Home</a></li>
 							<li><a href="<?= base_url('') ?>">Blogs</a></li>
-							<?php
-							if ($this->session->has_userdata('login_user_id')) {
-							?>
-								<li><a href="<?= base_url('dashboard') ?>">Dashboard</a>
-								</li>
-							<?php
-							}
-							?>
 						</ul>
 					</div>
 				</div>
@@ -62,7 +56,6 @@
 							<li><a href="#">About Us</a></li>
 							<li><a href="#">Our Mission</a></li>
 							<li><a href="#">Our team</a></li>
-							<li><a href="#">Plans</a></li>
 						</ul>
 					</div>
 				</div>
@@ -73,8 +66,6 @@
 						<ul class="footer-menu">
 							<li><a href="#">Create Vcard</a></li>
 							<li><a href="#">Company Login</a></li>
-							<li><a href="#">Indvisual Login</a></li>
-							<li><a href="#">Employee Login</a></li>
 
 						</ul>
 					</div>
@@ -88,7 +79,7 @@
 		<div class="container">
 			<div class="row align-items-center">
 				<div class="col-lg-12 col-md-12 text-center align-items-center">
-					<p class="mb-0">© <?php echo date("Y"); ?> SaharDirectory. Designd By <a href="http://webangeltech.com/" target="_blank" style="color: #20aaff;"> <img src="assets/img/webangeltech.png" width="20px" alt=""> Webangeltech.</a></p>
+					<p class="mb-0">© <?php echo date("Y"); ?> SaharDirectory. Designd By <a href="http://webangeltech.com/" target="_blank" style="color: #F41b3b ;"> <img src="assets/images/user_logo.png" width="20px" alt=""> Sahad Directory.</a></p>
 				</div>
 			</div>
 		</div>

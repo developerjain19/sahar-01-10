@@ -39,7 +39,7 @@
 
 
 
-	<div class="goodup-dashboard-wrap gray px-4 py-5 row ">
+	<div class="goodup-dashboard-wrap gray px-4 py-5 row mobile_author">
 		<?php include 'includes/dash-side-header.php' ?>
 		<div class="goodup-dashboard-content px-4 py-5 col-xl-9 col-lg-12 col-md-12 col-sm-12">
 			<div class="dashboard-tlbar d-block mb-5">
@@ -63,6 +63,19 @@
 						<form method="POST" id="myform" enctype="multipart/form-data">
 							<?php if ($msg = $this->session->flashdata('msg')) :
 								$msg_class = $this->session->flashdata('msg_class') ?>
+                          
+                           <?php
+                                        if ($this->session->has_userdata('imgmsg')) {
+                                            echo $this->session->userdata('imgmsg');
+                                            $this->session->unset_userdata('imgmsg');
+                                        }
+
+                                        if ($this->session->has_userdata('vermsg')) {
+                                            echo $this->session->userdata('vermsg');
+                                            $this->session->unset_userdata('vermsg');
+                                        }
+                                        ?>
+                                       
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="alert  <?= $msg_class; ?>"><?= $msg; ?></div>
@@ -124,7 +137,7 @@
 											<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 												<div class="form-group">
 													<label class="mb-1">Whatsapp</label>
-													<input type="text" class="form-control rounded" placeholder="Enter your whatsapp number" name="company_whatsapp" value="<?= (($datacomrow != '') ? $datacomrow['0']['company_whatsapp'] : '') ?>" maxlength="6" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required />
+													<input type="text" class="form-control rounded" placeholder="Enter your whatsapp number" name="company_whatsapp" value="<?= (($datacomrow != '') ? $datacomrow['0']['company_whatsapp'] : '') ?>" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required />
 												</div>
 											</div>
 											<div class="col-xl-6 col-lg-12 col-md-12 col-sm-12">
@@ -165,8 +178,6 @@
 														}
 														?>
 													</select>
-
-
 												</div>
 											</div>
 											<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
@@ -183,6 +194,7 @@
 
 												</div>
 											</div>
+                                          <p class=""> If you didn’t find your category or sub category,  Please Chat with us on <a target="_blank" href="https://api.whatsapp.com/send?phone=+917419272427&text=Hi, I Want to add my category" class="commonbutton text-success"><i class="lni lni-whatsapp"></i> Whatsapp</a></p>
 										</div>
 									</div>
 								</div>
@@ -224,6 +236,7 @@
 												</div>
 											</div>
 											<div class="col-lg-6 col-md-6">
+                                       
 												<div class="form-group">
 													<label for="formFileLg" class="form-label">Upload Company Banner (Only: JPG PNG and JPEG)</label>
 													<?php

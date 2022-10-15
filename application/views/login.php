@@ -1,6 +1,8 @@
 <?php include 'includes/header-link.php';
 ?>
 
+
+
 <div id="main-wrapper">
 
 
@@ -13,7 +15,7 @@
 			<div class="row align-items-start justify-content-center">
 				<div class="col-xl-5 col-lg-8 col-md-12">
 
-					<div class="signup-screen-wrap">
+					<div class="signup-screen-wrap login_form">
 						<div class="signup-screen-single">
 							<div class="text-center mb-4">
 								<h4 class="m-0 ft-medium">Login Your Account</h4>
@@ -28,7 +30,7 @@
 							echo $this->session->userdata('loginError');
 							$this->session->unset_userdata('loginError');
 							?>
-							<form class="submit-form" method="POST">
+							<form class="submit-form" name="form_submit" method="POST">
 								<div class="form-group">
 									<label class="mb-1">Number</label>
 									<input type="tel" class="form-control rounded" id="mobile" name="mobile" maxlength="10">
@@ -41,11 +43,10 @@
 								</div>
 
 								<div class="form-group">
-									<div class="d-flex align-items-center justify-content-end">
-										<!-- <div class="flex-1">
-													<input id="dd" class="checkbox-custom" name="dd" type="checkbox" checked>
-													<label for="dd" class="checkbox-custom-label w-100">Remember Me</label>
-												</div>	 -->
+									<div class="d-flex align-items-center justify-content-between">
+									<div class="eltio_k2">
+                                        <a href="<?= base_url('mobile-verify') ?>" class="theme-cl">Verify Your Mobile Number</a>
+                                    </div>
 										<div class="eltio_k2">
                                         <a href="<?= base_url('forget-password') ?>" class="theme-cl">Lost Your Password?</a>
                                     </div>
@@ -73,15 +74,19 @@
 </div>
 
 
-
-
-
-
-
- <script>
+<?php include 'includes/footer-link.php' ?>
+<script>
      
 
+// $("form[name='form_submit']").validate({
 
+//         errorClass: "error fail-alert",
+//         validClass: "valid success-alert",
+//         submitHandler: function(form) {
+//             $(".btn").text("").html("Loading.. <i class='fa fa-spin fa-spinner'></i>").attr('disabled', true);
+//             form.submit();
+//         }
+//     });
 
      $('input').attr('autocomplete', 'off');
 
@@ -94,8 +99,8 @@
 	
 
 
-     const pswrdField = document.querySelector(".submit-form .form-group input[type='password']"),
-         toggleIcon = document.querySelector(".submit-form .form-group i");
+     const pswrdField = document.querySelector(".login_form .submit-form .form-group input[type='password']"),
+         toggleIcon = document.querySelector(".login_form .submit-form .form-group i");
 
      toggleIcon.onclick = () => {
          if (pswrdField.type === "password") {
@@ -107,5 +112,3 @@
          }
      }
  </script>
-
-<?php include 'includes/footer-link.php' ?>

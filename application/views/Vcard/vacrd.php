@@ -285,11 +285,23 @@ updateRowById('company', 'company_id', $website[0]['company_id'], array('website
             $menu .= '<li><a href="#about"><i class="material-icons">About</i></a></li>';
         ?>
 
-            <div class="vcard-body-wrapper" id="about">
-                <h3>About Us</h3>
-                <p><?= $website[0]['company_about'] ?>
-                </p>
+           
+      <div class="vcard-body-wrapper mobile_view" id="product">
+                
+               <h3>About Us</h3>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12">
+                        <div class="Goodup-author-wrap ">
 
+                            
+                            <div class="Goodup-author-caption">
+                               
+                                <p class="pd-5"><?= $website[0]['company_about'] ?></p>
+                            </div>
+                            
+                        </div>
+                    </div>
+
+                
             </div>
 
         <?php

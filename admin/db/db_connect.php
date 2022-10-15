@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-// $conn = mysqli_connect("localhost", "root", "", "sahar-new") or die("Error " . mysqli_error($conn));
+// $conn = mysqli_connect("localhost", "root", "", "sahar") or die("Error " . mysqli_error($conn));
 $conn = mysqli_connect("localhost", "sahardir_sahar", "d?Ec(YNe,d}h", "sahardir_sahar") or die("Error " . mysqli_error($conn));
 
 date_default_timezone_set("Asia/Kolkata");

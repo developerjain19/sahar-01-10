@@ -22,6 +22,7 @@ $output .= '
                
                 <th>Status</th>
                 <th>Featured</th>
+                <th>Edit</th>
                 <th>Action</th>
                 
 
@@ -35,35 +36,39 @@ $output .= '
                 <th>Category</th>
                 <th>Status</th>
                 <th>Featured</th>
+                <th>Edit</th>
                   <th>Action</th>
             </tr>
           </tfoot>
           <tbody>
      ';
 while ($select_category_row = $select_category->fetch_assoc()) {
-	if ($select_category_row["category_status"] == "0") {
-		$option_status = "
+  if ($select_category_row["category_status"] == "0") {
+    $option_status = "
                                 <option value=0>Active </option>
                                 <option value=1>Deactive</option>
                               ";
-	} else {
-		$option_status = "
+  } else {
+    $option_status = "
                                 <option value=1>Deactive</option>
                                 <option value=0>Active </option>
                               ";
-	}
-	if($select_category_row["premium"] == "0"){
-	    	$featured_status = "
+  }
+  if ($select_category_row["premium"] == "0") {
+    $featured_status = "
                                 <option value=0>Yes</option>
                                 <option value=1>No</option>
                               ";
-	}else{
-	    $featured_status = "
+    $color = "#a8c5b2";
+  } else {
+    $featured_status = "
                                 <option value=1>No</option>
                                 <option value=0>Yes</option>
                               ";
-	}	    
-	$output .= '     <tr>
+  }
+
+
+  $output .= '     <tr style="background-color:' . $color . '">
                                 <td> ' . $sno . ' </td>
                                
                                 <td>' . $select_category_row["date"] . '</td>
@@ -82,11 +87,13 @@ while ($select_category_row = $select_category->fetch_assoc()) {
                                       </select>
                                   </div>
                                 </td>
-                             
-                              <td><a href="ajax/category-del.php?id='.$select_category_row["cate_id"].'" class="btn btn-primary">Delete</td>
+                                <td>
+                                <a class="btn btn-warning btn_edit" href="edit-category.php?id=' . $select_category_row["cate_id"] . '"><i class="fa fa-edit"></i> Edit </a>
+                            </td>
+                              <td><a href="ajax/category-del.php?id=' . $select_category_row["cate_id"] . '" class="btn btn-primary">Delete</td>
                             </tr>
                    ';
-	$sno++;
+  $sno++;
 }
 
 // <button class="btn btn-danger btn_delete" name="delete_btn" data-sid2="' . $select_category_row["company_id"] . '"><i class="fa fa-trash"></i> Delete </button>
@@ -100,39 +107,40 @@ echo $output;
 ?>
 
 <script>
-  $(function () {
+  $(function() {
 
     $('#select_company_category').DataTable({
-      'paging'      : true,
+      'paging': true,
       'lengthChange': true,
-      'searching'   : true,
-      'ordering'    : true,
-      'info'        : true,
-      'autoWidth'   : true
+      'searching': true,
+      'ordering': true,
+      'info': true,
+      'autoWidth': true
     })
   })
 </script>
 
 <script>
-        $(function(){
-            $("#export").click(function(){
-                $("#select_company_category").tableToCSV();
-            });
-        });
-        function printData()
-{
+  $(function() {
+    $("#export").click(function() {
+      $("#select_company_category").tableToCSV();
+    });
+  });
 
-}
-function printTable() 
-{
-   var divToPrint=document.getElementById("select_company_category");
-   newWin= window.open("");
-   newWin.document.write(divToPrint.outerHTML);
-   newWin.print();
-   newWin.close();
-}
-function defult_image(company_logo_table) {
-    $('#'+company_logo_table).attr('src', 'images/default-img.gif');
-    
-}
-    </script>
+  function printData() {
+
+  }
+
+  function printTable() {
+    var divToPrint = document.getElementById("select_company_category");
+    newWin = window.open("");
+    newWin.document.write(divToPrint.outerHTML);
+    newWin.print();
+    newWin.close();
+  }
+
+  function defult_image(company_logo_table) {
+    $('#' + company_logo_table).attr('src', 'images/default-img.gif');
+
+  }
+</script>

@@ -400,14 +400,14 @@ background-size: cover;">
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group mb-3">
                                                     <label class="ft-medium small mb-1">Name</label>
-                                                    <input class="form-control rounded" type="text" name="name" placeholder="Your Name" required>
+                                                    <input class="form-control rounded" type="text" name="name" value="<?= $user[0]['company_person'] ?>" placeholder="Your Name" required>
                                                 </div>
                                             </div>
 
                                             <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="form-group mb-3">
                                                     <label class="ft-medium small mb-1">Email</label>
-                                                    <input class="form-control rounded" type="email" name="email" placeholder="Your Email" required>
+                                                    <input class="form-control rounded" type="email" name="email" value="<?= $user[0]['company_email'] ?>" placeholder="Your Email" required>
                                                 </div>
                                             </div>
 
@@ -460,14 +460,14 @@ background-size: cover;">
 
                             <div class="form-group">
                                 <div class="side-search-item">
-                                    <input type="text" class="form-control b-0 ps-2" name="name" placeholder="Enter Your Name" required>
+                                    <input type="text" class="form-control b-0 ps-2" name="name" placeholder="Enter Your Name" value="<?= $user[0]['company_person'] ?>" required>
                                 </div>
                             </div>
 
 
                             <div class="form-group">
                                 <div class="side-search-item">
-                                    <input type="tel" class="form-control b-0 ps-2" name="number" placeholder="Enter Number" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
+                                    <input type="tel" class="form-control b-0 ps-2" name="number" value="<?= $user[0]['company_contact'] ?>" placeholder="Enter Number" maxlength="10" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -622,8 +622,8 @@ background-size: cover;">
 
     $("form[name='form_submit']").validate({
 
-        errorClass: "error fail-alert",
-        validClass: "valid success-alert",
+        errorClass: "error fail-alert text-danger",
+        validClass: "valid success-alert text-danger",
         submitHandler: function(form) {
             $(".btn").text("").html("Loading.. <i class='fa fa-spin fa-spinner'></i>").attr('disabled', true);
             form.submit();
@@ -631,8 +631,8 @@ background-size: cover;">
     });
     $("form[name='formsubmit']").validate({
 
-        errorClass: "error fail-alert",
-        validClass: "valid success-alert",
+        errorClass: "error fail-alert text-danger",
+        validClass: "valid success-alert text-danger",
         submitHandler: function(form) {
             $(".btn").text("").html("Loading.. <i class='fa fa-spin fa-spinner'></i>").attr('disabled', true);
             form.submit();

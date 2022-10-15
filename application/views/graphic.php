@@ -12,7 +12,7 @@
 
     <?php include 'includes/dash-top-header.php' ?>
 
-    <div class="goodup-dashboard-wrap gray px-4 py-5 graphics-container">
+    <div class="goodup-dashboard-wrap gray px-4 py-5 graphics-container mobile_author">
         <?php include 'includes/dash-side-header.php' ?>
         <div class="goodup-dashboard-content">
             <div class="dashboard-tlbar d-block mb-5">
@@ -50,8 +50,8 @@
                                             ?>
                                                     <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-6">
                                                         <div class="Goodup-sng-menu">
-                                                            <div class="Goodup-sng-menu-thumb">
-                                                                <img src="<?= base_url() ?>admin/graphicsuploads/<?= $graph['graphics']  ?>" class="img-fluid" alt="<?= $graph['name'] ?>" />
+                                                            <div class="Goodup-sng-menu-thumb" style="border: 1px solid #e9e9e9;">
+                                                                <img src="<?= base_url() ?>admin/graphicsuploads/<?= $graph['graphics']  ?>" class="img-fluid graph_imgae_frame" alt="<?= $graph['name'] ?>" />
                                                             </div>
                                                             <div class="Goodup-sng-menu-caption text-center">
                                                                 <h4 class="ft-medium fs-md"><?= $graph['name'] ?></h4>

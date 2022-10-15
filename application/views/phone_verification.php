@@ -22,10 +22,11 @@
                             }
                             ?>
                             <form method="post" id="otpver">
+                              <span id="otpmsg"></span>
                                 <span class="ec-login-wrap">
                                     <label>Enter OTP sent to your mobile no. <?= $this->session->userdata['login_user_contact'] ?></label>
                                     <input type="text" class="form-control" name="otp" id="otpval" placeholder="****">
-                                    <span id="otpmsg"></span>
+                                    
                                     <br>
                                 </span>
                                 <span class="ec-login-wrap ec-login-btn text-center">
@@ -53,7 +54,7 @@
 <script>
     $(document).ready(function() {
 
-        var countdownv = 20;
+        var countdownv = 40;
         $('#resend').hide();
         var refreshId = setInterval(function() {
             if (countdownv > 1) {
@@ -66,7 +67,7 @@
         }, 1000);
         setTimeout(function() {
             $('#resend').show();
-        }, 20000);
+        }, 40000);
     });
 
 
@@ -87,7 +88,9 @@
                 if (response == '1') {
                     window.location = "<?= base_url('my-profile') ?>";
                 } else {
-                    $('#otpmsg').text('Enter valid OTP');
+                  $(".btndis").text("").html("Submit OTP").attr('disabled', false);
+                    $('#otpmsg').text('Please Enter Valid OTP').attr('class', 'alert alert-danger');
+                  $('#otpmsg').css("display", "block");
                 }
             }
         });
@@ -111,7 +114,7 @@
                 }
             }
         });
-        var countdown = 20;
+        var countdown = 40;
         var refreshId = setInterval(function() {
             if (countdown > 1) {
                 $('#resendmsg').text('Resend in ' + countdown + ' sec');
@@ -125,6 +128,6 @@
             $('#resend').prop('disabled', false);
             $('#resend').css('color', 'grey');
 
-        }, 20000);
+        }, 40000);
     });
 </script>

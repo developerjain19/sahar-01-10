@@ -6,7 +6,7 @@
     <?php include 'includes/header2.php' ?>
     <?php include 'includes/dash-top-header.php' ?>
 
-    <div class="goodup-dashboard-wrap gray px-4 py-5">
+    <div class="goodup-dashboard-wrap gray px-4 py-5 mobile_author">
         <?php include 'includes/dash-side-header.php' ?>
 
         <div class="goodup-dashboard-content">

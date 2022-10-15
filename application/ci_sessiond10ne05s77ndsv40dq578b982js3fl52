@@ -1,0 +1,11 @@
+__ci_last_regenerate|i:1665829413;login_user_profile|N;verified_otp|s:1:"1";login_user_contact|s:10:"7771864467";vermsg|s:484:"<script type="text/javascript">
+                        $(document).ready(function() {
+                            swal({
+                                title: "Welcom Someone!",
+                                text: "Your mobile number is verified now",
+                                icon: "success",
+                                button: "Ok",
+                                timer: 4000
+                            });
+                        });
+                    </script>";login_user_id|s:3:"201";login_user_name|s:7:"Someone";login_user_emailid|s:25:"sagarthakur6265@gmail.com";

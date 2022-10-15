@@ -1,8 +1,6 @@
 <?php 
  include('db/db_connect.php');
 require_once('include/manage_session.php');
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -81,7 +79,7 @@ require_once('include/manage_session.php');
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-               <?php $select_contact_us=$conn->query("SELECT * FROM inquiry  ");
+               <?php $select_contact_us = $conn->query("SELECT * FROM inquiry  ");
                             $contact_us_count = mysqli_num_rows($select_contact_us); ?>
                             <?php $select_fee=$conn->query("SELECT * FROM feedback  ");
                             $feedback = mysqli_num_rows($select_fee); ?>
@@ -104,10 +102,10 @@ require_once('include/manage_session.php');
             //  echo $r;
              $select_contact_us=$conn->query($r);
             $contact_us_count = mysqli_num_rows($select_contact_us); ?>
-            <?php $select_fee=$conn->query("SELECT * FROM feedback WHERE cast(`date` as Date) = cast(DATE(NOW()) as Date) ");
+            <?php $select_fee = $conn->query("SELECT * FROM feedback WHERE cast(`date` as Date) = cast(DATE(NOW()) as Date) ");
             $feedback = mysqli_num_rows($select_fee); ?>
               <h3><?php echo $contact_us_count; ?> / <?php echo $feedback; ?></h3>
-              <p>Today Feedback / Today Enquiry </p>
+              <p>Today  Enquiry  / Today Feedback </p>
             </div>
             <div class="icon">
               <i class="ion ion-android-cart"></i>
@@ -128,7 +126,7 @@ require_once('include/manage_session.php');
             <?php $select_fee=$conn->query("SELECT * FROM feedback WHERE   MONTH(`date`) = MONTH(CURRENT_DATE())  ");
             $feedback = mysqli_num_rows($select_fee); ?>
               <h3><?php echo $contact_us_count; ?> / <?php echo $feedback; ?></h3>
-              <p>Monthly Feedback / Monthly Enquiry </p>
+              <p>Monthly  Enquiry / Monthly  Feedback </p>
             </div>
             <div class="icon">
               <i class="ion ion-android-cart"></i>

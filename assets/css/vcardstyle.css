@@ -33,12 +33,17 @@ html {
 }
 
 .vcard-wrapper.two {
-	height: 50%;
-	height: 50;
+	
 	margin-top: 18%;
 	margin-bottom: -85px;
 }
 
+.vcard-wrapper.two .grid img{
+      width: 100%;
+    
+    height: 200px;
+  object-fit: contain;
+}
 .wp{
     outline: none;
     position: relative;
@@ -277,7 +282,6 @@ html {
 	align-items: center;
 	text-align: center;
 	margin-top: 1.5rem;
-	margin-left: 8rem;
 	position: relative;
 }
 .vcard-style-2 .person i {
@@ -1854,6 +1858,13 @@ hr {
     margin-top: 31px;
   }
 }
+
+@media (max-height: 600px){
+  #home{
+        height: 65%;
+  }
+}
+
 .inquryform {
 	width: 100%;
 }
@@ -1867,7 +1878,7 @@ hr {
 .inquryform textarea {
 	width: 100%;
 	border: 1px solid #dedddd;
-	margin: 5px;
+	margin: 5px 0;
 	padding: 8px;
 }
 .inquryform input[type="submit"] {
@@ -1875,7 +1886,7 @@ hr {
 	padding: 8px 10px;
 	color: #fff;
 	font-size: 17px;
-	margin: 8px;
+	margin: 8px 0;
 	letter-spacing: 1px;
 	cursor: pointer;
 }

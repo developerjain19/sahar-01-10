@@ -32,6 +32,18 @@ class Home extends CI_Controller
         $this->load->view('check-mail');
     }
 
+  public function save_capture()
+    {
+        $image =  $this->input->post('image');;
+        $image = explode(";", $image)[1];
+        $image = explode(",", $image)[1];
+        $image = str_replace(" ", "+", $image);
+        $rand = rand(999, 999999999999999999);
+        $image = base64_decode($image);
+        file_put_contents("uploads/" . $rand . ".jpeg", $image);
+
+        echo $rand . '.jpeg';
+    }
 
     public function blog()
     {
@@ -190,6 +202,7 @@ class Home extends CI_Controller
         $data['search_cities'] = $this->CommonModal->getAllRows('tbl_cities');
         $data['search_company'] = $this->CommonModal->getAllRows('company');
         $data['search_product'] = $this->CommonModal->runQuery('SELECT * FROM `product` GROUP BY `product_title`');
+      	$data['user'] = $this->CommonModal->getRowById('company', 'rgid', sessionID('login_user_id'));
         $this->load->view('listing-details', $data);
     }
 
@@ -325,7 +338,7 @@ class Home extends CI_Controller
 
     public function forget_password()
     {
-        $data['title'] = 'Forget password - Tradingviews USDT Day Trade';
+        $data['title'] = 'Forget password - Sahar directory';
 
         if (count($_POST) > 0) {
             extract($this->input->post());
@@ -352,12 +365,37 @@ Team Sahar Directory
                 //   exit();
                 redirect(base_url('login'));
             } else {
-                $this->session->set_userdata('forget', '<span class="text-danger">No username found</span>');
+                $this->session->set_userdata('forget', '<span class="text-danger">No user found with this mobile number</span>');
                 redirect(base_url('forget-password'));
             }
         } else {
         }
         $this->load->view('forget_password', $data);
+    }
+  
+  public function mobile_verify()
+    {
+        $data['title'] = 'Verify Mobile Number - Sahar directory';
+
+        if (count($_POST) > 0) {
+          $table = "tbl_registration";
+          $mobile = $this->input->post('mobile');
+         	$user =  $this->CommonModal->getRowByMoreId($table, array('mobile' => $mobile));
+          if($user){
+          	$post['otp'] =   rand(1111, 9999);
+          	sendOTP($mobile, "Your OTP is " . $post['otp'] . " to verify your phone number with sahardirectory.com Pl doesn't share this with anyone else. Thanks Team Sahar Directory (Ekaum Enterprises)");
+            $table = "tbl_registration";
+            $updateotp =  $this->CommonModal->updateRowById('tbl_registration', 'mobile', $mobile, array('otp' => $post['otp']));
+             $this->session->set_userdata(array('login_user_contact' => $mobile, 'otp' => $post['otp'], 'login_user_otp_id' => $user[0]['rgid']));
+              redirect(base_url('phoneverification'));
+            
+          }else{
+             $this->session->set_userdata('forget', '<span class="text-danger">No user found with this mobile number. Please Sign Up</span>');
+                redirect(base_url('forget-password'));
+          }
+        } else {
+        }
+        $this->load->view('mobile-verify', $data);
     }
 
     public function login()
@@ -374,11 +412,10 @@ Team Sahar Directory
             $login_data = $this->CommonModal->getRowByMoreId($table, array('mobile' => $mobile));
 
 
-
             if (!empty($login_data)) {
 
                 if ($login_data[0]['otp_verified'] != 1) {
-                    $this->session->set_flashdata('loginError', '<h6 class="alert alert-warning">Oops ! Your number is not varified please Register again </h6>');
+                    $this->session->set_flashdata('loginError', '<h6 class="alert alert-warning">Oops ! Your number is not varified please <a href="'.base_url("mobile-verify").'" class="text-success" style="text-decoration: underline;"> Verify now </a> </h6>');
                     redirect(base_url('login'));
                 } else if ($login_data[0]['password'] == $password) {
 
@@ -391,11 +428,11 @@ Team Sahar Directory
                         redirect(base_url('dashboard'));
                     }
                 } else {
-                    $this->session->set_userdata('msg', '<h6 class="alert alert-danger">The <b>password</b> you entered is <b>incorrect</b> Please try again.</h6>');
+                    $this->session->set_userdata('msg', '<h6 class="alert alert-danger">You have enterd wrong password</h6>');
                     redirect(base_url('login'));
                 }
             } else {
-                $this->session->set_flashdata('loginError', '<h6 class="alert alert-warning">Username or password doesnt match</h6>');
+                $this->session->set_flashdata('loginError', '<h6 class="alert alert-warning">No user found with this mobile number. Please signup</h6>');
                 redirect(base_url('login'));
             }
         } else {
@@ -411,12 +448,11 @@ Team Sahar Directory
 
         $data['title'] = 'Register | SaharDirectory - Get a Personal Visiting Card';
         if (count($_POST) > 0) {
-            $contact = $this->input->post('mobile');
-            $count_mobile = $this->CommonModal->getNumRows('tbl_registration', array('mobile' => $this->input->post('mobile'), 'email' => $this->input->post('email')));
-
-
+           $contact = $this->input->post('mobile');
+            $count_mobile = $this->CommonModal->getNumRows('tbl_registration', array('mobile' => $this->input->post('mobile')));
+            $count_email = $this->CommonModal->getNumRows('tbl_registration', array('email' => $this->input->post('email')));
             $company_count = $this->CommonModal->getNumRows('company', array('company_contact' => $this->input->post('mobile'), 'company_email' => $this->input->post('email')));
-            if ($count_mobile > 0 || $company_count > 0) {
+            if ($count_mobile > 0 || $company_count > 0 || $count_email > 0) {
                 $this->session->set_userdata('msg', '<h6 class="alert alert-danger">You have already registered with this email id or contact no.</h6>');
                 redirect(base_url('signup'));
             } else {
@@ -429,6 +465,8 @@ Team Sahar Directory
                     $post['otp'] =   rand(1111, 9999);
                     sendOTP($contact, "Your OTP is " . $post['otp'] . " to verify your phone number with sahardirectory.com Pl doesn't share this with anyone else. Thanks Team Sahar Directory (Ekaum Enterprises)");
                     $lastid = $this->CommonModal->insertRowReturnId('tbl_registration', $post);
+                  	//$register = $this->session->set_userdata(array('register_user_contact' => $post['mobile'], 'register_user_name' => $post['name'], 'register_user_email' => $post['email']));
+                 	// $register = $this->session->set_userdata(array('register_user' => $post));
                     $this->session->set_userdata(array('login_user_contact' => $post['mobile'], 'otp' => $post['otp'], 'login_user_otp_id' => $lastid));
                     redirect(base_url('phoneverification'));
                 }
@@ -464,19 +502,28 @@ Team Sahar Directory
             $update =  $this->CommonModal->updateRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_otp_id'), array('otp_verified' => '1'));
             if ($update) {
 
-
-
                 $message = sendmail($post[0]['name'], $post[0]['mobile'],  $post[0]['password']);
                 mailmsg($post[0]['email'], 'Registered with sahardirectory | Welcome User', $message);
                 $debug = true;
 
                 $msg = 'Hi ' .  $post[0]['name'] . ', Your Login Id- ' . $post[0]['mobile'] . ' and Password-  ' . $post[0]['password'] . '.
-Thanks 
-Team Sahar Directory 
-(Ekaum)';
+                Thanks 
+                Team Sahar Directory 
+                (Ekaum)';
 
                 SMSSend($post[0]['mobile'], $msg, '1707165665533059542', $debug);
-                $this->session->set_userdata('msg', '<span class="alert alert-success">OTP verified , Login with your contact no. to continue.</span>');
+               // $this->session->set_userdata('msg', '<span class="alert alert-success">OTP verified , Login with your contact no. to continue.</span>');
+              $this->session->set_userdata('vermsg', '<script type="text/javascript">
+                        $(document).ready(function() {
+                            swal({
+                                title: "Welcom '.$post[0]['name'].'!",
+                                text: "Your mobile number is verified now",
+                                icon: "success",
+                                button: "Ok",
+                                timer: 4000
+                            });
+                        });
+                    </script>');
             } else {
                 $this->session->set_userdata('msg', '<span class="alert alert-success">Your Mobile no has been verified. 
                 Pl wait our team is reviewing your profile and will update you soon. Thanks.</span>');
@@ -529,6 +576,20 @@ Team Sahar Directory
                 }
 
                 $company_banner = $post['company_banner'];
+              
+              if(($_FILES[$company_banner]["size"] > 100)){
+                $this->session->set_userdata('imgmsg', '<script type="text/javascript">
+                        $(document).ready(function() {
+                            swal({
+                                title: "Something Wrong!",
+                                text: "Please try again later",
+                                icon: "error",
+                                button: "Ok",
+                                timer: 4000
+                            });
+                        });
+                    </script>');
+              }else{
                 if ($_FILES['company_banner_temp']['name'] != '') {
                     $img = imageUpload('company_banner_temp', 'uploads/company/');
                     $post['company_banner'] = $img;
@@ -536,6 +597,7 @@ Team Sahar Directory
                         unlink('uploads/company/' . $company_banner);
                     }
                 }
+            }
 
                 $insert = $this->CommonModal->updateRowById('company', 'rgid', $uid, $post);
 
@@ -725,10 +787,11 @@ Team Sahar Directory
         $data['title'] = "Dashboard | SaharDirectory - Get a Personal Visiting Card";
         $data['login_user'] = $this->session->userdata();
         $data['profiledata'] = $this->CommonModal->getRowById('tbl_registration', 'rgid', $this->session->userdata('login_user_id'));
+      $data['login_user'] = $this->CommonModal->getRowById('company', 'rgid', $this->session->userdata('login_user_id'));
         $company_en = $this->CommonModal->getRowById('company', 'rgid', $this->session->userdata('login_user_id'));
         $data['enquiry'] = $this->CommonModal->getRowByIdInOrder('inquiry', array('company_id' => $company_en[0]['company_id']), 'id', 'DESC');
 
-        $data['company_count'] = $this->CommonModal->getNumRows('company', array('rgid' => $this->session->userdata('login_user_id')));
+        $data['company_count'] = $this->CommonModal->getNumRows('product', array('company_id' => $this->session->userdata('login_user_id')));
         $data['vcard_count'] = $this->CommonModal->getRowById('company', 'rgid', $this->session->userdata('login_user_id'));
         $data['review_count'] = $this->CommonModal->getNumRows('reviews', array('company_id' => $this->session->userdata('login_user_id')));
 

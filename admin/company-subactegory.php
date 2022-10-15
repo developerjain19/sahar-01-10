@@ -192,9 +192,9 @@ include 'include/side_navbar.php';
                     method:"POST",
                     data:{id:id, text:text, column_name:column_name},
                     dataType:"text",
-                    // success: function(result){
-                    //   console.log(result);
-                    // }
+                    success: function(result){
+                      alert('Status Updated Successfully');
+                    }
 
                });
 

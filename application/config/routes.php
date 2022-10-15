@@ -51,6 +51,7 @@ $route['blog-detail/(:any)/(:any)'] = 'home/blog_details/$1/$2';
 
 $route['listing/(:any)/(:any)/(:any)/(:any)'] = 'Home/listing_details/$1/$2/$3/$4';
 $route['forget-password'] = 'Home/forget_password';
+$route['mobile-verify'] = 'Home/mobile_verify';
 $route['track'] = 'Home/track';
 
 

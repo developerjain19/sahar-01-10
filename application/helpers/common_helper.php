@@ -335,7 +335,7 @@ function imageUpload($imageName, $path)
 {
 	$ci = &get_instance();
 	$config['file_name'] = date('dm') . round(microtime(true) * 1000);
-	$config['allowed_types'] = 'jpg|png|jpeg|Webp|webp|jfif';
+	$config['allowed_types'] = 'jpg|png|jpeg|';
 	$config['upload_path'] = $path;
 	$target_path = $path;
 	$config['remove_spaces'] = true;
@@ -476,7 +476,7 @@ function mailmsg($to, $subject, $message)
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 
-	$headers .= 'From:  info@webangeltech.com' . "\r\n";
+	$headers .= 'From:  hello@sahardirectory.com' . "\r\n";
 	$headers .= 'Cc: ' . $to . "\r\n";
 
 	$send = mail($to, $subject, $message, $headers);
